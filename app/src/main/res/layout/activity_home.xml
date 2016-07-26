@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <include
+            android:id="@+id/head_title"
+            layout="@layout/layout_title" />
+
+        <View style="@style/style_default_line" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10.0dip"
+            android:background="@color/gray_bg"
+            android:visibility="visible" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="130.0dip"
+            android:background="@drawable/setting_selector"
+            android:padding="8.0dip" >
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:id="@+id/imageView"
+                android:background="@drawable/head_photo"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:text="令狐冲"
+                android:textColor="@color/black"
+                android:id="@+id/textView4"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="5dp"
+                android:layout_alignTop="@+id/imageView"
+                android:layout_toEndOf="@+id/imageView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="员工编号:201600000000"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/black"
+                android:id="@+id/textView5"
+                android:layout_alignBottom="@+id/imageView"
+                android:layout_alignStart="@+id/textView4" />
+        </RelativeLayout>
+        <View style="@style/style_default_line" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="20.0dip"
+            android:background="@color/gray_bg"
+            android:visibility="visible" />
+
+        <View style="@style/style_default_line" />
+
+        <LinearLayout
+            android:id="@+id/ll_config"
+            android:layout_width="fill_parent"
+            android:layout_height="50.0dip"
+            android:background="@drawable/setting_selector"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="8.0dip"
+            android:clickable="true">
+
+            <TextView
+                style="@style/style_setting_text"
+                android:layout_width="wrap_content"
+                android:layout_height="30.0dip"
+                android:drawableLeft="@mipmap/user_feedback"
+                android:gravity="left|center"
+                android:text="系统设置"
+                android:drawablePadding="12dp"
+                android:textColor="@color/black"
+                android:textSize="16.0sp" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="30.0dip"
+                android:layout_weight="1.0"
+                android:gravity="right|center"
+                android:paddingLeft="5.0dip"
+                android:paddingRight="5.0dip"
+                android:text=""
+                android:textColor="@color/black" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription=""
+                android:src="@mipmap/right_arrow"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="8dp" />
+        </LinearLayout>
+
+
+
+        <View style="@style/style_default_line" />
+
+        <LinearLayout
+            android:id="@+id/ll_update"
+            android:layout_width="fill_parent"
+            android:layout_height="50.0dip"
+            android:background="@drawable/setting_selector"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="8.0dip"
+            android:clickable="true">
+
+            <TextView
+                style="@style/style_setting_text"
+                android:layout_width="wrap_content"
+                android:layout_height="30.0dip"
+                android:drawableLeft="@mipmap/user_help"
+                android:gravity="left|center"
+                android:text="检查更新"
+                android:drawablePadding="12dp"
+                android:textColor="@color/black"
+                android:textSize="16.0sp" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="30.0dip"
+                android:layout_weight="1.0"
+                android:gravity="right|center"
+                android:paddingLeft="5.0dip"
+                android:paddingRight="5.0dip"
+                android:text=""
+                android:textColor="@color/black" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription=""
+                android:src="@mipmap/right_arrow"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="4dp" />
+        </LinearLayout>
+
+        <View style="@style/style_default_line" />
+
+        <LinearLayout
+            android:id="@+id/ll_about"
+            android:layout_width="fill_parent"
+            android:layout_height="50.0dip"
+            android:background="@drawable/setting_selector"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="8.0dip"
+            android:clickable="true">
+
+            <TextView
+                style="@style/style_setting_text"
+                android:layout_width="wrap_content"
+                android:layout_height="30.0dip"
+                android:drawableLeft="@mipmap/user_about"
+                android:gravity="left|center"
+                android:text="关于"
+                android:drawablePadding="12dp"
+                android:textColor="@color/black"
+                android:textSize="16.0sp" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="30.0dip"
+                android:layout_weight="1.0"
+                android:gravity="right|center"
+                android:paddingLeft="5.0dip"
+                android:paddingRight="5.0dip"
+                android:text=""
+                android:textColor="@color/black" />
+
+            <ImageView
+                android:contentDescription=""
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/right_arrow"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="8dp" />
+        </LinearLayout>
+
+        <View style="@style/style_default_line" />
+
+        <Button
+            android:id="@+id/btn_logout"
+            style="@style/style_red_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20.0dip"
+            android:layout_marginLeft="20.0dip"
+            android:layout_marginRight="20.0dip"
+            android:layout_marginTop="20.0dip"
+            android:background="@drawable/red_button_selector"
+            android:text="退出登录" />
+    </LinearLayout>
+</ScrollView>

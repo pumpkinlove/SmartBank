@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/head_title"
+        layout="@layout/layout_title" />
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:padding="15dp"
+            android:layout_weight="1"
+            android:layout_margin="20dp"
+            android:text="预填单功能"
+            android:clickable="true"
+            android:textAlignment="center"
+            android:background="@drawable/function_selector"
+            android:gravity="center_horizontal|bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:padding="15dp"
+            android:layout_weight="1"
+            android:layout_margin="20dp"
+            android:text="队列管理"
+            android:clickable="true"
+            android:textAlignment="center"
+            android:background="@drawable/function_selector"
+            android:gravity="center_horizontal|bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:padding="15dp"
+            android:layout_weight="1"
+            android:layout_margin="20dp"
+            android:text="产品营销"
+            android:clickable="true"
+            android:textAlignment="center"
+            android:background="@drawable/function_selector"
+            android:gravity="center_horizontal|bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <View style="@style/style_default_line" />
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:padding="15dp"
+            android:layout_weight="1"
+            android:layout_margin="20dp"
+            android:text="网点活动跟踪"
+            android:clickable="true"
+            android:textAlignment="center"
+            android:background="@drawable/function_selector"
+            android:gravity="center_horizontal|bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:padding="15dp"
+            android:layout_weight="1"
+            android:layout_margin="20dp"
+            android:text="客流量分析"
+            android:clickable="true"
+            android:textAlignment="center"
+            android:background="@drawable/function_selector"
+            android:gravity="center_horizontal|bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:padding="15dp"
+            android:layout_weight="1"
+            android:layout_margin="20dp"
+            android:clickable="true"
+            android:textAlignment="center"
+            android:background="@drawable/function_selector"
+            android:gravity="center_horizontal|bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            android:text="我的助手" />
+    </LinearLayout>
+    <View style="@style/style_default_line" />
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:padding="15dp"
+            android:layout_weight="1"
+            android:layout_margin="20dp"
+            android:clickable="true"
+            android:textAlignment="center"
+            android:background="@drawable/function_selector"
+            android:gravity="center_horizontal|bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible" />
+        <TextView
+            android:padding="15dp"
+            android:layout_weight="1"
+            android:layout_margin="20dp"
+            android:clickable="true"
+            android:textAlignment="center"
+            android:background="@drawable/function_selector"
+            android:gravity="center_horizontal|bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible" />
+        <TextView
+            android:padding="15dp"
+            android:layout_weight="1"
+            android:layout_margin="20dp"
+            android:clickable="true"
+            android:textAlignment="center"
+            android:background="@drawable/function_selector"
+            android:gravity="center_horizontal|bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+</LinearLayout>
