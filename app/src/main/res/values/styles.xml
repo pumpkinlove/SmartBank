@@ -40,4 +40,10 @@
         <item name="android:shadowRadius">0.5</item>
     </style>
 
+    <style name="style_input">
+        <item name="android:textSize">15.0sp</item>
+        <item name="android:textColorHint">#7F7F7F</item>
+        <item name="android:background">@drawable/demo_account_text_bg</item>
+    </style>
+
 </resources>

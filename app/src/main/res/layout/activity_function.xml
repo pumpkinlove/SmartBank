@@ -23,7 +23,8 @@
             android:background="@drawable/function_selector"
             android:gravity="center_horizontal|bottom"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:id="@+id/fun_ciips" />
         <TextView
             android:padding="15dp"
             android:layout_weight="1"
@@ -34,7 +35,8 @@
             android:background="@drawable/function_selector"
             android:gravity="center_horizontal|bottom"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:id="@+id/fun_team" />
         <TextView
             android:padding="15dp"
             android:layout_weight="1"
@@ -45,7 +47,8 @@
             android:background="@drawable/function_selector"
             android:gravity="center_horizontal|bottom"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:id="@+id/fun_product" />
     </LinearLayout>
     <View style="@style/style_default_line" />
     <LinearLayout
@@ -63,7 +66,8 @@
             android:background="@drawable/function_selector"
             android:gravity="center_horizontal|bottom"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:id="@+id/fun_bankdoing" />
         <TextView
             android:padding="15dp"
             android:layout_weight="1"
@@ -74,7 +78,8 @@
             android:background="@drawable/function_selector"
             android:gravity="center_horizontal|bottom"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:id="@+id/fun_custom_analyze" />
         <TextView
             android:padding="15dp"
             android:layout_weight="1"
@@ -86,7 +91,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="visible"
-            android:text="我的助手" />
+            android:text="我的助手"
+            android:id="@+id/fun_help" />
     </LinearLayout>
     <View style="@style/style_default_line" />
     <LinearLayout

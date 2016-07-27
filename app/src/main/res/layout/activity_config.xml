@@ -1,8 +1,217 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/gray_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <include
         android:id="@+id/head_title"
         layout="@layout/layout_title" />
-</RelativeLayout>
+    <LinearLayout
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="20.0dip"
+            android:background="@color/gray_bg"
+            android:visibility="visible" />
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="7dp">
+            <TextView
+                android:text="通信IP"
+                android:layout_weight="3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="18sp"
+                android:textColor="@color/dark"
+                android:gravity="center_vertical"
+                android:paddingLeft="12dp"
+                android:singleLine="true" />
+            <EditText
+                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:id="@+id/et_socket_ip"
+                android:textSize="18sp"
+                android:hint="Socket Ip地址"
+                android:gravity="center_vertical"
+                android:singleLine="true" />
+        </LinearLayout>
+        <View
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            style="@style/style_default_line"/>
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="7dp">
+            <TextView
+                android:text="通信端口号"
+                android:layout_weight="3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="18sp"
+                android:textColor="@color/dark"
+                android:gravity="center_vertical"
+                android:paddingLeft="12dp"
+                android:singleLine="true" />
+            <EditText
+                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/et_socket_port"
+                android:background="@null"
+                android:textSize="18sp"
+                android:hint="Socket通信 端口号"
+                android:gravity="center_vertical"
+                android:singleLine="true" />
+        </LinearLayout>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="20.0dip"
+            android:background="@color/gray_bg"
+            android:visibility="visible" />
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="7dp">
+            <TextView
+                android:text="消息服务IP"
+                android:layout_weight="3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="18sp"
+                android:textColor="@color/dark"
+                android:gravity="center_vertical"
+                android:paddingLeft="12dp"
+                android:singleLine="true" />
+            <EditText
+                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/et_emqtt_ip"
+                android:background="@null"
+                android:textSize="18sp"
+                android:hint="消息服务Ip地址"
+                android:gravity="center_vertical"
+                android:singleLine="true" />
+        </LinearLayout>
+        <View
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            style="@style/style_default_line"/>
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="7dp">
+            <TextView
+                android:text="消息服务端口号"
+                android:layout_weight="3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="18sp"
+                android:textColor="@color/dark"
+                android:gravity="center_vertical"
+                android:paddingLeft="12dp"
+                android:singleLine="true" />
+            <EditText
+                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/et_emqtt_port"
+                android:background="@null"
+                android:textSize="18sp"
+                android:hint="消息服务端口号"
+                android:gravity="center_vertical"
+                android:singleLine="true" />
+        </LinearLayout>
+        <View
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            style="@style/style_default_line"/>
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="7dp">
+            <TextView
+                android:text="客户端编号"
+                android:layout_weight="3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="18sp"
+                android:textColor="@color/dark"
+                android:gravity="center_vertical"
+                android:paddingLeft="12dp"
+                android:singleLine="true" />
+            <EditText
+                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/et_client_id"
+                android:background="@null"
+                android:textSize="18sp"
+                android:hint="客户端编号"
+                android:gravity="center_vertical"
+                android:singleLine="true" />
+        </LinearLayout>
+        <View
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            style="@style/style_default_line"/>
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="7dp">
+            <Button
+                android:text="保存"
+                android:layout_weight="1"
+                android:background="@drawable/blue_button_selector"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="22sp"
+                android:textColor="@color/white"
+                android:layout_margin="4dp"
+                android:id="@+id/btn_config_confirm"/>
+            <Button
+                android:text="取消"
+                android:layout_weight="1"
+                android:background="@drawable/red_button_selector"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:textSize="22sp"
+                android:textColor="@color/white"
+                android:id="@+id/btn_config_cancel" />
+        </LinearLayout>
+        <View
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            style="@style/style_default_line"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </LinearLayout>
+</LinearLayout>

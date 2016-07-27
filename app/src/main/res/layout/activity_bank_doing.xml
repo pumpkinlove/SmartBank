@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+    <include
+        android:id="@+id/head_title"
+        layout="@layout/layout_title" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/iv_photo"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.16" />
+
+    <LinearLayout
+        android:layout_weight="0.84"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/btn_take_photo"
+            android:text="拍照"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="6dp"/>
+        <Button
+            android:id="@+id/btn_retake_photo"
+            android:text="重拍"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="6dp"/>
+        <Button
+            android:id="@+id/btn_upload_photo"
+            android:text="上传"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="6dp"/>
+    </LinearLayout>
+
+</LinearLayout>
