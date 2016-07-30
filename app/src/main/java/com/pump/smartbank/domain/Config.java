@@ -22,17 +22,24 @@ public class Config implements Serializable {
     @Column(name = "socketPort")
     private String socketPort;
     @Column(name = "clientId")
-    private String clientId;        //终端号
+    private String clientId;        //终端号   pad唯一标识符
+    @Column(name = "emqttUsername")
+    private String emqttUsername;
+    @Column(name = "emqttPassword")
+    private String emqttPassword;
 
     public Config() {
     }
 
-    public Config(String emqttIp, String emqttPort, String socketIp, String socketPort, String clientId) {
+    public Config(int id, String emqttIp, String emqttPort, String socketIp, String socketPort, String clientId, String emqttUsername, String emqttPassword) {
+        this.id = id;
         this.emqttIp = emqttIp;
         this.emqttPort = emqttPort;
         this.socketIp = socketIp;
         this.socketPort = socketPort;
         this.clientId = clientId;
+        this.emqttUsername = emqttUsername;
+        this.emqttPassword = emqttPassword;
     }
 
     public String getEmqttIp() {
@@ -83,15 +90,20 @@ public class Config implements Serializable {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "Config{" +
-                "id=" + id +  '\'' +
-                ", emqttIp='" + emqttIp + '\'' +
-                ", emqttPort='" + emqttPort + '\'' +
-                ", socketIp='" + socketIp + '\'' +
-                ", socketPort='" + socketPort + '\'' +
-                ", clientId='" + clientId + '\'' +
-                '}';
+    public String getEmqttUsername() {
+        return emqttUsername;
     }
+
+    public void setEmqttUsername(String emqttUsername) {
+        this.emqttUsername = emqttUsername;
+    }
+
+    public String getEmqttPassword() {
+        return emqttPassword;
+    }
+
+    public void setEmqttPassword(String emqttPassword) {
+        this.emqttPassword = emqttPassword;
+    }
+
 }

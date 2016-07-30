@@ -46,8 +46,8 @@
                 android:singleLine="true" />
         </LinearLayout>
         <View
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             style="@style/style_default_line"/>
         <LinearLayout
             android:layout_weight="1"
@@ -109,8 +109,8 @@
                 android:singleLine="true" />
         </LinearLayout>
         <View
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             style="@style/style_default_line"/>
         <LinearLayout
             android:layout_weight="1"
@@ -140,8 +140,70 @@
                 android:singleLine="true" />
         </LinearLayout>
         <View
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            style="@style/style_default_line"/>
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="7dp">
+            <TextView
+                android:text="消息服务用户名"
+                android:layout_weight="3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="18sp"
+                android:textColor="@color/dark"
+                android:gravity="center_vertical"
+                android:paddingLeft="12dp"
+                android:singleLine="true" />
+            <EditText
+                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/et_emqtt_username"
+                android:background="@null"
+                android:textSize="18sp"
+                android:hint="消息服务用户名"
+                android:gravity="center_vertical"
+                android:singleLine="true" />
+        </LinearLayout>
+        <View
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            style="@style/style_default_line"/>
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="7dp">
+            <TextView
+                android:text="消息服务密码"
+                android:layout_weight="3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="18sp"
+                android:textColor="@color/dark"
+                android:gravity="center_vertical"
+                android:paddingLeft="12dp"
+                android:singleLine="true" />
+            <EditText
+                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/et_emqtt_pwd"
+                android:background="@null"
+                android:textSize="18sp"
+                android:hint="消息服务密码"
+                android:gravity="center_vertical"
+                android:singleLine="true" />
+        </LinearLayout>
+        <View
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             style="@style/style_default_line"/>
         <LinearLayout
             android:layout_weight="1"
@@ -171,11 +233,11 @@
                 android:singleLine="true" />
         </LinearLayout>
         <View
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             style="@style/style_default_line"/>
         <LinearLayout
-            android:layout_weight="1"
+            android:layout_weight="0.96"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -204,12 +266,12 @@
                 android:id="@+id/btn_config_cancel" />
         </LinearLayout>
         <View
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             style="@style/style_default_line"/>
     </LinearLayout>
     <LinearLayout
-        android:layout_weight="1"
+        android:layout_weight="1.2"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

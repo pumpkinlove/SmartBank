@@ -19,9 +19,9 @@
         app:cardCornerRadius="3dp"
         app:cardElevation="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="2dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="0dp"
         android:paddingBottom="5dp">
         <LinearLayout
             android:orientation="vertical"
@@ -69,9 +69,9 @@
         app:cardCornerRadius="3dp"
         app:cardElevation="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="0dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="0dp"
         android:paddingBottom="5dp">
         <LinearLayout
             android:orientation="vertical"
@@ -100,7 +100,7 @@
             </LinearLayout>
             <View style="@style/style_blue_line" />
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_recentVisit"
+                android:id="@+id/rv_customer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -119,9 +119,9 @@
         app:cardCornerRadius="3dp"
         app:cardElevation="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="0dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="0dp"
         android:paddingBottom="5dp">
         <LinearLayout
             android:orientation="vertical"
@@ -150,7 +150,7 @@
             </LinearLayout>
             <View style="@style/style_blue_line" />
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_recentDevelop"
+                android:id="@+id/rv_watcher"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 

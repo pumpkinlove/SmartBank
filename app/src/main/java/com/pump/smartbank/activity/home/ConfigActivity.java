@@ -1,20 +1,20 @@
 package com.pump.smartbank.activity.home;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.pump.smartbank.R;
 import com.pump.smartbank.activity.BaseActivity;
 import com.pump.smartbank.domain.Config;
+import com.pump.smartbank.service.EmqttService;
 import com.pump.smartbank.util.DbUtil;
+import com.pump.smartbank.util.ServiceUtil;
 
 import org.xutils.DbManager;
-import org.xutils.db.sqlite.WhereBuilder;
 import org.xutils.ex.DbException;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
@@ -44,6 +44,12 @@ public class ConfigActivity extends BaseActivity {
 
     @ViewInject(R.id.et_client_id)
     private EditText et_client_id;
+
+    @ViewInject(R.id.et_emqtt_username)
+    private EditText et_emqtt_username;
+
+    @ViewInject(R.id.et_emqtt_pwd)
+    private EditText et_emqtt_password;
 
     private Config config;
     private DbManager dbManager;
@@ -79,6 +85,8 @@ public class ConfigActivity extends BaseActivity {
             et_emqtt_ip.setText(config.getEmqttIp());
             et_emqtt_port.setText(config.getEmqttPort());
             et_client_id.setText(config.getClientId());
+            et_emqtt_username.setText(config.getEmqttUsername());
+            et_emqtt_password.setText(config.getEmqttPassword());
         }
     }
 
@@ -90,6 +98,9 @@ public class ConfigActivity extends BaseActivity {
                 break;
             case R.id.btn_config_confirm:
                 saveConfig();
+                if(!ServiceUtil.isServiceWork(this, "com.pump.smartbank.service.EmqttService")){
+                    restartService();
+                }
                 break;
             case R.id.btn_config_cancel:
                 cancelConfig();
@@ -113,6 +124,13 @@ public class ConfigActivity extends BaseActivity {
         if(et_client_id.length() == 0){
             showToast("请填写客户端编号");
         }
+        if(et_emqtt_username.length() == 0){
+            showToast("请填写消息服务用户名");
+        }
+        if(et_emqtt_password.length() == 0){
+            showToast("请填写消息服务密码");
+        }
+
         if(config == null){
             config = new Config();
         }
@@ -121,7 +139,8 @@ public class ConfigActivity extends BaseActivity {
         config.setEmqttIp(et_emqtt_ip.getText().toString());
         config.setEmqttPort(et_emqtt_port.getText().toString());
         config.setClientId(et_client_id.getText().toString());
-
+        config.setEmqttUsername(et_emqtt_username.getText().toString());
+        config.setEmqttPassword(et_emqtt_password.getText().toString());
         try {
             dbManager.saveOrUpdate(config);
         } catch (DbException e) {
@@ -133,5 +152,10 @@ public class ConfigActivity extends BaseActivity {
 
     private void cancelConfig(){
         finish();
+    }
+
+    private void restartService(){
+        Intent reStartServiceIntent = new Intent(this, EmqttService.class);
+        startService(reStartServiceIntent);
     }
 }

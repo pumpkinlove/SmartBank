@@ -8,131 +8,121 @@
         android:id="@+id/head_title"
         layout="@layout/layout_title" />
 
-    <LinearLayout
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:padding="15dp"
-            android:layout_weight="1"
-            android:layout_margin="20dp"
-            android:text="预填单功能"
-            android:clickable="true"
-            android:textAlignment="center"
-            android:background="@drawable/function_selector"
-            android:gravity="center_horizontal|bottom"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/fun_ciips" />
-        <TextView
-            android:padding="15dp"
-            android:layout_weight="1"
-            android:layout_margin="20dp"
-            android:text="队列管理"
-            android:clickable="true"
-            android:textAlignment="center"
-            android:background="@drawable/function_selector"
-            android:gravity="center_horizontal|bottom"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/fun_team" />
-        <TextView
-            android:padding="15dp"
-            android:layout_weight="1"
-            android:layout_margin="20dp"
-            android:text="产品营销"
-            android:clickable="true"
-            android:textAlignment="center"
-            android:background="@drawable/function_selector"
-            android:gravity="center_horizontal|bottom"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/fun_product" />
-    </LinearLayout>
     <View style="@style/style_default_line" />
+
     <LinearLayout
-        android:layout_weight="1"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
-            android:padding="15dp"
-            android:layout_weight="1"
-            android:layout_margin="20dp"
-            android:text="网点活动跟踪"
-            android:clickable="true"
-            android:textAlignment="center"
-            android:background="@drawable/function_selector"
-            android:gravity="center_horizontal|bottom"
+
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/fun_bankdoing" />
-        <TextView
-            android:padding="15dp"
-            android:layout_weight="1"
-            android:layout_margin="20dp"
-            android:text="客流量分析"
-            android:clickable="true"
-            android:textAlignment="center"
-            android:background="@drawable/function_selector"
-            android:gravity="center_horizontal|bottom"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@mipmap/fun_ciips"
+                android:background="@drawable/image_cornor_selector"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fun_ciips"
+                android:layout_margin="4dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginLeft="4dp" />
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_margin="4dp"
+                android:src="@mipmap/fun_team"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fun_team"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginLeft="4dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/fun_custom_analyze" />
-        <TextView
-            android:padding="15dp"
-            android:layout_weight="1"
-            android:layout_margin="20dp"
-            android:clickable="true"
-            android:textAlignment="center"
-            android:background="@drawable/function_selector"
-            android:gravity="center_horizontal|bottom"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_margin="4dp"
+                android:src="@mipmap/fun_product"
+                android:background="@drawable/image_cornor_selector"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fun_product"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginLeft="4dp" />
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_margin="4dp"
+                android:src="@mipmap/fun_bankdoing"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fun_bankdoing"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginLeft="4dp" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="visible"
-            android:text="我的助手"
-            android:id="@+id/fun_help" />
-    </LinearLayout>
-    <View style="@style/style_default_line" />
-    <LinearLayout
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:padding="15dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_margin="4dp"
+                android:src="@mipmap/fun_analyze"
+                android:background="@drawable/image_cornor_selector"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fun_analyze"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginLeft="4dp" />
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_margin="4dp"
+                android:src="@mipmap/fun_myhelp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fun_myhelp"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginLeft="4dp" />
+
+
+        </LinearLayout>
+        <LinearLayout
             android:layout_weight="1"
-            android:layout_margin="20dp"
-            android:clickable="true"
-            android:textAlignment="center"
-            android:background="@drawable/function_selector"
-            android:gravity="center_horizontal|bottom"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="invisible" />
-        <TextView
-            android:padding="15dp"
-            android:layout_weight="1"
-            android:layout_margin="20dp"
-            android:clickable="true"
-            android:textAlignment="center"
-            android:background="@drawable/function_selector"
-            android:gravity="center_horizontal|bottom"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="invisible" />
-        <TextView
-            android:padding="15dp"
-            android:layout_weight="1"
-            android:layout_margin="20dp"
-            android:clickable="true"
-            android:textAlignment="center"
-            android:background="@drawable/function_selector"
-            android:gravity="center_horizontal|bottom"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="invisible" />
+            android:layout_height="match_parent">
+
+
+        </LinearLayout>
+
+
+
     </LinearLayout>
 
 </LinearLayout>

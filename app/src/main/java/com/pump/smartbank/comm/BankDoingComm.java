@@ -17,7 +17,7 @@ public class BankDoingComm extends BaseComm {
 
     private Bitmap bitmap;
 
-    protected BankDoingComm(Socket socket, Bitmap bitmap) {
+    public BankDoingComm(Socket socket,Bitmap bitmap) {
         super(socket, BANK_DOING_REQ, BANK_DOING_RET);
         this.bitmap = bitmap;
     }
