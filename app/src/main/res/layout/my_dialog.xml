@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="350dp"
+	android:layout_height="wrap_content"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:background="@null"
+	android:orientation="vertical">
+	<android.support.v7.widget.CardView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		app:cardBackgroundColor="@color/white"
+		android:clickable="true"
+		app:cardCornerRadius="6dp"
+		app:cardElevation="8dp">
+		<LinearLayout
+			android:orientation="vertical"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+			<LinearLayout
+				android:id="@+id/d_ll_title"
+				android:visibility="gone"
+				android:orientation="horizontal"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_margin="7dp">
+				<TextView
+					android:text="标题"
+					android:textStyle="bold"
+					android:id="@+id/dialog_title"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:textSize="22sp"
+					android:textColor="@color/blue_theme_dark"
+					android:gravity="center_vertical"
+					android:paddingLeft="10dp"
+					android:singleLine="true" />
+				<View
+					style="@style/style_default_line"/>
+			</LinearLayout>
+
+			<LinearLayout
+				android:orientation="horizontal"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="50dp"
+				android:layout_marginBottom="50dp">
+				<TextView
+					android:text="内容"
+					android:id="@+id/dialog_content"
+					android:textAlignment="center"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:textSize="19sp"
+					android:textColor="@color/dark"
+					android:gravity="center_vertical"
+					android:singleLine="true" />
+			</LinearLayout>
+			<View
+				android:layout_marginLeft="8dp"
+				android:layout_marginRight="8dp"
+				style="@style/style_default_line"/>
+			<LinearLayout
+				android:orientation="horizontal"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_margin="7dp">
+				<Button
+					android:text="确 定"
+					android:layout_weight="1"
+					android:background="@drawable/blue_button_selector"
+					android:layout_width="match_parent"
+					android:layout_height="45dp"
+					android:layout_margin="4dp"
+					android:gravity="center"
+					android:textSize="22sp"
+					android:textColor="@color/white"
+					android:id="@+id/d_positiveButton"/>
+				<Button
+					android:text="取 消"
+					android:layout_weight="1"
+					android:background="@drawable/red_button_selector"
+					android:layout_width="match_parent"
+					android:layout_height="45dp"
+					android:layout_margin="4dp"
+					android:gravity="center"
+					android:textSize="22sp"
+					android:textColor="@color/white"
+					android:id="@+id/d_negativeButton" />
+			</LinearLayout>
+
+
+		</LinearLayout>
+
+	</android.support.v7.widget.CardView>
+
+
+</LinearLayout>

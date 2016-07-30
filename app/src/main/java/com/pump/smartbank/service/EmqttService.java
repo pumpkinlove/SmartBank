@@ -62,7 +62,7 @@ public class EmqttService extends Service {
                     System.out.println("-----------------------------");
                     Intent intent = new Intent();
                     intent.putExtra("informType", 1);
-                    intent.putExtra("notice", new Notice("差评", DateUtil.toHourMinString(new Date()), "1"));
+                    intent.putExtra("notice", new Notice("差评", new Date(),"窗口1", 1));
                     intent.setAction("android.intent.action.test");//action与接收器相同
                     sendBroadcast(intent);
                 } else if(msg.what == 2) {

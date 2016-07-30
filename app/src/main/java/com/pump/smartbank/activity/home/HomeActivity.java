@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 
 import com.pump.smartbank.R;
+import com.pump.smartbank.activity.BaseActivity;
+import com.pump.smartbank.view.MyDialog;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
@@ -16,21 +18,29 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 @ContentView(R.layout.activity_home)
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity {
 
     @ViewInject(R.id.tv_middleContent)
     private TextView tv_middleContent;
+
+    private MyDialog logutDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//去掉信息栏
         super.onCreate(savedInstanceState);
 
-
+        initData();
         initView();
     }
 
-    private void initView(){
+    @Override
+    protected void initData() {
+        logutDialog = new MyDialog(this,"确定退出吗？");
+    }
+
+    @Override
+    protected void initView(){
         x.view().inject(this);
         tv_middleContent.setText("我");
     }
@@ -45,6 +55,9 @@ public class HomeActivity extends AppCompatActivity {
             case R.id.ll_update:
                 break;
             case R.id.ll_about:
+                break;
+            case R.id.btn_logout:
+                logutDialog.show();
                 break;
         }
     }

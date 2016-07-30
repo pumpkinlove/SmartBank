@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.pump.smartbank.R;
 import com.pump.smartbank.domain.Notice;
+import com.pump.smartbank.util.DateUtil;
 
 import org.w3c.dom.Text;
 
@@ -58,7 +59,7 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeView
         Collections.reverse(noticeList);
         personViewHolder.tv_position.setText(noticeList.get(i).getPosition());
         personViewHolder.tv_content.setText(noticeList.get(i).getContent());
-        personViewHolder.tv_time.setText(noticeList.get(i).getTime());
+        personViewHolder.tv_time.setText(DateUtil.toHourMinString(noticeList.get(i).getTime()));
         Collections.reverse(noticeList);
     }
 

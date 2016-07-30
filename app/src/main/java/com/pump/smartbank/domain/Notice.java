@@ -26,8 +26,7 @@ public class Notice implements Serializable {
     public Notice() {
     }
 
-    public Notice(int id, String content, Date time, String position, int type) {
-        this.id = id;
+    public Notice(String content, Date time, String position, int type) {
         this.content = content;
         this.time = time;
         this.position = position;

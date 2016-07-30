@@ -215,7 +215,7 @@
             android:layout_marginLeft="20.0dip"
             android:layout_marginRight="20.0dip"
             android:layout_marginTop="20.0dip"
-            android:background="@drawable/red_button_selector"
+            android:background="@drawable/logout_button"
             android:text="退出登录" />
     </LinearLayout>
 </ScrollView>
