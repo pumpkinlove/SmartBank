@@ -5,7 +5,7 @@
     <color name="colorAccent">#ff4081</color>
     <color name="white">#ffffff</color>
     <color name="blue_theme_normal">#00b4ff</color>
-    <color name="blue_theme_dark">#0096FF</color>
+    <color name="blue_theme_dark">#0096ff</color>
     <color name="dark">#333333</color>
     <color name="gray_hint">#6effffff</color>
     <color name="gray_light">#ababab</color>
@@ -26,4 +26,6 @@
     <color name="blue_fun_light">#66dedd</color>
     <color name="red">#e9ff2b2b</color>
     <color name="red_dark">#d40000</color>
+    <color name="green_dark">#007d00</color>
+    <color name="orange">#ff7d00</color>
 </resources>

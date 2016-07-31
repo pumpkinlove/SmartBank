@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/tv_watch_position"
+        android:gravity="center"
+        android:text="1号窗口"
+        android:textColor="@color/dark"
+        android:layout_weight="4"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/tv_watch_workername"
+        android:gravity="center"
+        android:text="张三"
+        android:textColor="@color/black"
+        android:layout_weight="4"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/tv_watch_good"
+        android:gravity="center"
+        android:text="10"
+        android:textColor="@color/black"
+        android:layout_weight="4"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/tv_watch_bad"
+        android:gravity="center"
+        android:text="1"
+        android:textColor="@color/black"
+        android:layout_weight="4"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/tv_watch_status"
+        android:gravity="center"
+        android:text="办理业务中"
+        android:textColor="@color/black"
+        android:layout_weight="4"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

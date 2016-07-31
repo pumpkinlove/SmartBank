@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.pump.smartbank.R;
 import com.pump.smartbank.activity.BaseActivity;
+import com.pump.smartbank.view.MyDialog;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
@@ -18,7 +19,7 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 @ContentView(R.layout.activity_ciips)
-public class CiipsActivity extends BaseActivity {
+public class CiipsActivity extends BaseActivity implements View.OnClickListener{
 
     @ViewInject(R.id.tv_middleContent)
     private TextView tv_middleContent;
@@ -28,6 +29,8 @@ public class CiipsActivity extends BaseActivity {
 
     @ViewInject(R.id.wv_ciips)
     private WebView wv_ciips;
+
+    private MyDialog backDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +44,9 @@ public class CiipsActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-
+        backDialog = new MyDialog(this,"确定退出填单吗？");
+        backDialog.setOnNegativeListener(this);
+        backDialog.setOnPositiveListener(this);
     }
 
     @Override
@@ -77,11 +82,33 @@ public class CiipsActivity extends BaseActivity {
         wv_ciips.requestFocus();
     }
 
-    @Event(value={R.id.tv_leftContent},type=View.OnClickListener.class)
-    private void onClick(View view){
+    @Event(value={R.id.tv_leftContent,R.id.d_negativeButton,R.id.d_positiveButton},type=View.OnClickListener.class)
+    private void onClicked(View view){
         switch (view.getId()){
             case R.id.tv_leftContent:
+                backDialog.show();
+                break;
+            case R.id.d_positiveButton:
                 finish();
+                break;
+            case R.id.d_negativeButton:
+                backDialog.dismiss();
+                break;
+        }
+    }
+
+    @Override
+    public void onClick(View view){
+        switch (view.getId()){
+            case R.id.tv_leftContent:
+                backDialog.show();
+                break;
+            case R.id.d_positiveButton:
+                backDialog.dismiss();
+                finish();
+                break;
+            case R.id.d_negativeButton:
+                backDialog.dismiss();
                 break;
         }
     }

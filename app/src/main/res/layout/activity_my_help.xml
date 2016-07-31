@@ -16,7 +16,7 @@
         android:layout_height="match_parent">
         <android.support.v7.widget.CardView
             android:layout_weight="1"
-            android:id="@+id/cv_calculator_loan"
+            android:id="@+id/cv_calculator_finance"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:foreground="?android:attr/selectableItemBackground"
@@ -236,23 +236,6 @@
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
-        <android.support.v7.widget.CardView
-            android:visibility="gone"
-            android:layout_weight="1"
-            android:id="@+id/cv_calculator_financing"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:clickable="true"
-            app:cardCornerRadius="3dp"
-            app:cardElevation="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="5dp"
-            android:paddingBottom="5dp">
-
-        </android.support.v7.widget.CardView>
     </LinearLayout>
     <LinearLayout
         android:layout_weight="1"

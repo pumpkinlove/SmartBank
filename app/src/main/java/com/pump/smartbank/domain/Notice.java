@@ -12,22 +12,25 @@ import java.util.Date;
  */
 @Table(name = "notice")
 public class Notice implements Serializable {
-    @Column(name = "id",isId = true,autoGen = true)
+    @Column(name = "id",isId = true,autoGen = true )
     private int id;
     @Column( name = "content" )
     private String content;
+    @Column( name = "date" )
+    private String date;
     @Column( name = "time" )
-    private Date time;
-    @Column( name = "position")
+    private String time;
+    @Column( name = "position" )
     private String position;
-    @Column( name = "type")
+    @Column( name = "type" )
     private int type;
 
     public Notice() {
     }
 
-    public Notice(String content, Date time, String position, int type) {
+    public Notice(String content, String date, String time, String position, int type) {
         this.content = content;
+        this.date = date;
         this.time = time;
         this.position = position;
         this.type = type;
@@ -49,11 +52,11 @@ public class Notice implements Serializable {
         this.content = content;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -71,5 +74,13 @@ public class Notice implements Serializable {
 
     public void setType(int type) {
         this.type = type;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

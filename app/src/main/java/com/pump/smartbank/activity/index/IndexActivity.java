@@ -13,14 +13,26 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.pump.smartbank.R;
+import com.pump.smartbank.adapter.CustomerAdapter;
 import com.pump.smartbank.adapter.NoticeAdapter;
+import com.pump.smartbank.adapter.WatchStatusAdapter;
+import com.pump.smartbank.domain.Customer;
 import com.pump.smartbank.domain.Notice;
+import com.pump.smartbank.domain.WatchStatus;
+import com.pump.smartbank.util.DateUtil;
+import com.pump.smartbank.util.DbUtil;
 
+import org.xutils.DbManager;
+import org.xutils.config.DbConfigs;
+import org.xutils.db.Selector;
+import org.xutils.db.sqlite.WhereBuilder;
+import org.xutils.ex.DbException;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @ContentView(R.layout.activity_index)
@@ -33,16 +45,24 @@ public class IndexActivity extends AppCompatActivity {
     private RecyclerView rv_notice;
 
     @ViewInject(R.id.rv_customer)
-    private RecyclerView rv_recentVisit;
+    private RecyclerView rv_customer;
 
     @ViewInject(R.id.rv_watcher)
-    private RecyclerView rv_recentDevelop;
+    private RecyclerView rv_watchStatus;
 
     private List<Notice> noticeList;
+    private List<WatchStatus> watchStatusList;
+    private List<Customer> customerList;
 
     private Vibrator vibrator;
     private RecyclerView.Adapter noticeAdapter;
+    private RecyclerView.Adapter watchStatusAdapter;
+    private RecyclerView.Adapter customerAdapter;
+
     private InformReceiver informReceiver;
+    private DbManager.DaoConfig dbConfig;
+    private DbManager dbManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//去掉信息栏
@@ -54,12 +74,36 @@ public class IndexActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        noticeList = new ArrayList<Notice>();
-        noticeAdapter = new NoticeAdapter(noticeList, this);
+        dbConfig = DbUtil.getDaoConfig();
+        dbManager = x.getDb(dbConfig);
+        try {
+            WhereBuilder b1 = WhereBuilder.b();
+            b1.and("date","=", DateUtil.toMonthDay(new Date()));
+            noticeList = dbManager.selector(Notice.class).where(b1).findAll();
+            if(noticeList == null){
+                noticeList = new ArrayList<Notice>();
+            }
+            noticeAdapter = new NoticeAdapter(noticeList, this);
+
+            WhereBuilder b2 = WhereBuilder.b();
+            b2.and("comeDate","=", DateUtil.toMonthDay(new Date()));
+            customerList = dbManager.selector(Customer.class).where(b2).findAll();
+            if(customerList == null){
+                customerList = new ArrayList<Customer>();
+            }
+            customerAdapter = new CustomerAdapter(customerList, this);
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
+
+        watchStatusList = new ArrayList<WatchStatus>();
+        watchStatusAdapter = new WatchStatusAdapter(watchStatusList, this);
+
         informReceiver = new InformReceiver();
-        IntentFilter filter=new IntentFilter();
+        IntentFilter filter = new IntentFilter();
         filter.addAction("android.intent.action.test");
         registerReceiver(informReceiver,filter);
+
     }
 
     private void initView() {
@@ -73,6 +117,13 @@ public class IndexActivity extends AppCompatActivity {
         rv_notice.setLayoutManager(new LinearLayoutManager(this));
         rv_notice.setAdapter(noticeAdapter);
 
+        rv_watchStatus.setHasFixedSize(true);
+        rv_watchStatus.setLayoutManager(new LinearLayoutManager(this));
+        rv_watchStatus.setAdapter(watchStatusAdapter);
+
+        rv_customer.setHasFixedSize(true);
+        rv_customer.setLayoutManager(new LinearLayoutManager(this));
+        rv_customer.setAdapter(customerAdapter);
     }
 
 
@@ -82,13 +133,32 @@ public class IndexActivity extends AppCompatActivity {
             int informType = intent.getIntExtra("informType", 0);
             switch (informType){
                 case 1:
-                    noticeList.add((Notice)intent.getSerializableExtra("notice"));
-                    noticeAdapter.notifyDataSetChanged();
-                    inform();
+                    try {
+                        Notice newNotice = (Notice)intent.getSerializableExtra("notice");
+                        dbManager.save(newNotice);
+                        noticeList.add(newNotice);
+                        noticeAdapter.notifyDataSetChanged();
+                        inform();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case 2:
+                    WatchStatus watchStatus = (WatchStatus)intent.getSerializableExtra("watchStatus");
+                    watchStatusList.add(watchStatus);
+                    watchStatusAdapter.notifyDataSetChanged();
+                    inform();
                     break;
                 case 3:
+                    try {
+                        Customer customer = (Customer)intent.getSerializableExtra("customer");
+                        dbManager.save(customer);
+                        customerList.add(customer);
+                        customerAdapter.notifyDataSetChanged();
+                        inform();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     break;
             }
         }

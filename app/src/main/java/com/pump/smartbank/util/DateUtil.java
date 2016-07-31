@@ -13,4 +13,9 @@ public class DateUtil {
         return myFmt.format(date);
     }
 
+    public static String toMonthDay(Date date){
+        SimpleDateFormat myFmt=new SimpleDateFormat("yyyy-MM-dd");
+        return myFmt.format(date);
+    }
+
 }

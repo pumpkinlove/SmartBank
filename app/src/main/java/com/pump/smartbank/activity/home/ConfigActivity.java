@@ -69,6 +69,16 @@ public class ConfigActivity extends BaseActivity {
         dbManager = x.getDb(daoConfig);
         try {
             config = dbManager.findFirst(Config.class);
+            if(config == null){
+                config = new Config();
+                config.setEmqttIp("192.168.2.108");
+                config.setEmqttPort("1883");
+                config.setSocketIp("192.168.2.108");
+                config.setSocketPort("7000");
+                config.setEmqttUsername("default");
+                config.setEmqttPassword("default");
+                config.setClientId("default");
+            }
         } catch (DbException e) {
             e.printStackTrace();
         }

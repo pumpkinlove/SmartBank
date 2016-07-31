@@ -8,7 +8,9 @@ import android.os.Message;
 import android.widget.Toast;
 
 import com.pump.smartbank.domain.Config;
+import com.pump.smartbank.domain.Customer;
 import com.pump.smartbank.domain.Notice;
+import com.pump.smartbank.domain.WatchStatus;
 import com.pump.smartbank.util.DateUtil;
 import com.pump.smartbank.util.DbUtil;
 
@@ -32,7 +34,7 @@ public class EmqttService extends Service {
     private Config config;
     private Handler handler;
     private MqttClient client;
-    private String myTopic = "test/topic";
+    private String myTopic = "topic1";
     private MqttConnectOptions options;
     private ScheduledExecutorService scheduler;
     private DbManager.DaoConfig daoConfig;
@@ -60,10 +62,25 @@ public class EmqttService extends Service {
                     Toast.makeText(EmqttService.this, (String) msg.obj,
                             Toast.LENGTH_SHORT).show();
                     System.out.println("-----------------------------");
+                    int msgType = Integer.valueOf(((String) msg.obj).substring(0,1));
                     Intent intent = new Intent();
-                    intent.putExtra("informType", 1);
-                    intent.putExtra("notice", new Notice("差评", new Date(),"窗口1", 1));
-                    intent.setAction("android.intent.action.test");//action与接收器相同
+                    switch (msgType){
+                        case 1:
+                            intent.putExtra("informType", 1);
+                            intent.putExtra("notice", new Notice("差评",DateUtil.toMonthDay(new Date()) ,DateUtil.toHourMinString(new Date()),"窗口1", 1));
+                            intent.setAction("android.intent.action.test");//action与接收器相同
+                            break;
+                        case 2:
+                            intent.putExtra("informType", 2);
+                            intent.putExtra("watchStatus", new WatchStatus("1","张三", 11,2,1));
+                            intent.setAction("android.intent.action.test");//action与接收器相同
+                            break;
+                        case 3:
+                            intent.putExtra("informType", 3);
+                            intent.putExtra("customer", new Customer("李四", DateUtil.toHourMinString(new Date()), DateUtil.toMonthDay(new Date())));
+                            intent.setAction("android.intent.action.test");//action与接收器相同
+                            break;
+                    }
                     sendBroadcast(intent);
                 } else if(msg.what == 2) {
                     Toast.makeText(EmqttService.this, "连接成功", Toast.LENGTH_SHORT).show();
@@ -132,6 +149,7 @@ public class EmqttService extends Service {
                 @Override
                 public void connectionLost(Throwable cause) {
                     //连接丢失后，一般在这里面进行重连
+                    Toast.makeText(EmqttService.this, "失去连接", Toast.LENGTH_SHORT).show();
                     System.out.println("connectionLost----------");
                 }
 
@@ -149,7 +167,7 @@ public class EmqttService extends Service {
                     System.out.println("messageArrived----------");
                     Message msg = new Message();
                     msg.what = 1;
-                    msg.obj = topicName+"---"+message.toString();
+                    msg.obj = message.toString();
                     handler.sendMessage(msg);
                 }
             });

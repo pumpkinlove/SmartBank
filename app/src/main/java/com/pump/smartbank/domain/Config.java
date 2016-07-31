@@ -9,7 +9,7 @@ import java.io.Serializable;
  * Created by xu.nan on 2016/7/27.
  * 系统设置
  */
-@Table(name="config")
+@Table(name="config", onCreated = "")
 public class Config implements Serializable {
     @Column(name = "id",isId = true,autoGen = true)
     private int id;
