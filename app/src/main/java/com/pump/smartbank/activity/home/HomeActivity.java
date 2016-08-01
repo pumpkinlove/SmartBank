@@ -24,6 +24,7 @@ public class HomeActivity extends BaseActivity {
     private TextView tv_middleContent;
 
     private MyDialog logutDialog;
+    private MyDialog aboutDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void initData() {
         logutDialog = new MyDialog(this,"确定退出吗？");
+        aboutDialog = new MyDialog(this,"关于",getResources().getString(R.string.about));
     }
 
     @Override
@@ -47,7 +49,7 @@ public class HomeActivity extends BaseActivity {
 
 
     @Event(value={R.id.ll_config,R.id.ll_about,R.id.ll_update,R.id.btn_logout},type=View.OnClickListener.class)
-    private void onClick(View view){
+    private void onClicked(View view){
         switch (view.getId()){
             case R.id.ll_config:
                 startActivity(new Intent(HomeActivity.this, ConfigActivity.class));
@@ -55,6 +57,7 @@ public class HomeActivity extends BaseActivity {
             case R.id.ll_update:
                 break;
             case R.id.ll_about:
+                aboutDialog.show();
                 break;
             case R.id.btn_logout:
                 logutDialog.show();

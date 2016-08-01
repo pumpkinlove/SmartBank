@@ -5,7 +5,11 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.pump.smartbank.R;
@@ -18,8 +22,8 @@ import org.xutils.x;
 
 import java.text.DecimalFormat;
 
-@ContentView(R.layout.activity_my_help)
-public class MyHelpActivity extends BaseActivity {
+@ContentView(R.layout.activity_loan_calculator)
+public class LoanCalculatorActivity extends BaseActivity {
 
     @ViewInject(R.id.tv_middleContent)
     private TextView tv_middleContent;
@@ -45,6 +49,14 @@ public class MyHelpActivity extends BaseActivity {
     private double f_result_earn = 0.0;
     private double f_result_total = 0.0;
 
+    private int loanType;
+
+    @ViewInject(R.id.sp_loanType)
+    private Spinner sp_type;
+    private ArrayAdapter<String> spAdapter;
+
+    private static final String[] m={"等额本息还款","等额本金还款"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//去掉信息栏
@@ -57,14 +69,27 @@ public class MyHelpActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-
+        spAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,m);
+        spAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     }
 
     @Override
     protected void initView() {
         x.view().inject(this);
-        tv_middleContent.setText("理财计算器");
+        tv_middleContent.setText("贷款计算器");
         tv_leftContent.setVisibility(View.VISIBLE);
+        sp_type.setAdapter(spAdapter);
+        sp_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                loanType = i;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     @Event(value={R.id.tv_leftContent,R.id.btn_calculate,R.id.btn_clear },type=View.OnClickListener.class)
@@ -100,13 +125,13 @@ public class MyHelpActivity extends BaseActivity {
         f_result_earn = f_result_total - f_money;
         String htmlStr =
                 "<html><body>" +
-                "<p><font color=\"#aabb00\">" + f_year + "</p>" +
-                " 年后，收益 "+
-                "<p><font color=\"#00bbaa\">" + dcmFmt.format(f_result_earn) + "</p>" +
-                " 元，合计 "+
-                "<p><font color=\"#00bbaa\">" + dcmFmt.format(f_result_total) + "</p>" +
-                " 元 " +
-                "</body></html>";
+                        "<p><font color=\"#aabb00\">" + f_year + "</p>" +
+                        " 年后，收益 "+
+                        "<p><font color=\"#00bbaa\">" + dcmFmt.format(f_result_earn) + "</p>" +
+                        " 元，合计 "+
+                        "<p><font color=\"#00bbaa\">" + dcmFmt.format(f_result_total) + "</p>" +
+                        " 元 " +
+                        "</body></html>";
         tv_finance_result.setText(Html.fromHtml(htmlStr));
     }
 

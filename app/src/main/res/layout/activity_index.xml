@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/gray_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,6 +10,11 @@
         android:id="@+id/head_title"
         layout="@layout/layout_title" />
 
+    <TextView
+        android:text="提醒服务"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp" />
     <android.support.v7.widget.CardView
         android:layout_weight="1"
         android:id="@+id/cv_notice"
@@ -16,7 +22,7 @@
         android:layout_height="match_parent"
         android:clickable="true"
         app:cardCornerRadius="3dp"
-        app:cardElevation="8dp">
+        app:cardElevation="5dp">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -26,24 +32,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:layout_weight="1"
-                    android:text="提醒服务"
+                    android:id="@+id/tv_notice_position"
+                    android:gravity="center"
+                    android:text="窗口号"
                     android:textStyle="bold"
-                    android:layout_margin="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:textAlignment="center"
-                    android:layout_weight="5"
                     android:textColor="@color/blue_theme_normal"
-                    android:text="MORE"
-                    android:textStyle="bold"
-                    android:layout_margin="8dp"
+                    android:layout_weight="4"
+                    android:textSize="18sp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:id="@+id/tv_notice_content"
+                    android:text="通知内容"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textColor="@color/blue_theme_normal"
+                    android:layout_weight="2"
+                    android:textSize="18sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:id="@+id/tv_notice_time"
+                    android:text="时间"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textColor="@color/blue_theme_normal"
+                    android:layout_weight="4"
+                    android:textSize="18sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp" />
             </LinearLayout>
-            <View style="@style/style_blue_line" />
-
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_notice"
                 android:layout_width="match_parent"
@@ -52,7 +71,11 @@
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
-
+    <TextView
+        android:text="客户营销"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp" />
     <android.support.v7.widget.CardView
         android:layout_weight="1"
         android:id="@+id/cv_recentVisit"
@@ -60,7 +83,7 @@
         android:layout_height="match_parent"
         android:clickable="true"
         app:cardCornerRadius="3dp"
-        app:cardElevation="8dp">
+        app:cardElevation="5dp">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -70,23 +93,36 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:layout_weight="1"
-                    android:text="客户营销"
+                    android:id="@+id/tv_customer_name"
+                    android:gravity="center"
+                    android:text="客户姓名"
                     android:textStyle="bold"
-                    android:layout_margin="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:textAlignment="center"
-                    android:layout_weight="5"
                     android:textColor="@color/blue_theme_normal"
-                    android:text="MORE"
-                    android:textStyle="bold"
-                    android:layout_margin="8dp"
+                    android:layout_weight="4"
+                    android:textSize="18sp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textColor="@color/blue_theme_normal"
+                    android:layout_weight="2"
+                    android:textSize="18sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp" />
+                <TextView
+                    android:id="@+id/tv_customer_come_time"
+                    android:text="时间"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textColor="@color/blue_theme_normal"
+                    android:layout_weight="4"
+                    android:textSize="18sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp" />
             </LinearLayout>
-            <View style="@style/style_blue_line" />
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_customer"
                 android:layout_width="match_parent"
@@ -96,7 +132,11 @@
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
-
+    <TextView
+        android:text="窗口业务监控"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp" />
     <android.support.v7.widget.CardView
         android:layout_weight="1"
         android:id="@+id/cv_recentDevelop"
@@ -104,7 +144,7 @@
         android:layout_height="match_parent"
         android:clickable="true"
         app:cardCornerRadius="3dp"
-        app:cardElevation="8dp">
+        app:cardElevation="5dp">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -114,23 +154,56 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:layout_weight="1"
-                    android:text="窗口业务监控"
+                    android:id="@+id/tv_watch_position"
+                    android:gravity="center"
+                    android:text="窗口号"
                     android:textStyle="bold"
-                    android:layout_margin="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:textAlignment="center"
-                    android:layout_weight="5"
                     android:textColor="@color/blue_theme_normal"
-                    android:text="MORE"
-                    android:textStyle="bold"
-                    android:layout_margin="8dp"
+                    android:layout_weight="4"
+                    android:textSize="18sp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:id="@+id/tv_watch_workername"
+                    android:gravity="center"
+                    android:text="营业员"
+                    android:textStyle="bold"
+                    android:textColor="@color/blue_theme_normal"
+                    android:layout_weight="4"
+                    android:textSize="18sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:id="@+id/tv_watch_good"
+                    android:gravity="center"
+                    android:text="好评"
+                    android:textStyle="bold"
+                    android:textColor="@color/blue_theme_normal"
+                    android:layout_weight="4"
+                    android:textSize="18sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:id="@+id/tv_watch_bad"
+                    android:gravity="center"
+                    android:text="差评"
+                    android:textStyle="bold"
+                    android:textColor="@color/blue_theme_normal"
+                    android:layout_weight="4"
+                    android:textSize="18sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:id="@+id/tv_watch_status"
+                    android:gravity="center"
+                    android:text="状态"
+                    android:textStyle="bold"
+                    android:textColor="@color/blue_theme_normal"
+                    android:layout_weight="4"
+                    android:textSize="18sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
             </LinearLayout>
-            <View style="@style/style_blue_line" />
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_watcher"
                 android:layout_width="match_parent"

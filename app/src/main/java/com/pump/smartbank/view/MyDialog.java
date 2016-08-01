@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.pump.smartbank.R;
@@ -24,6 +25,7 @@ public class MyDialog extends Dialog {
 		setCustomView();
 		titleTxv.setText(title);
 		msgTxv.setText(content);
+		showTitle();
 	}
 
 	public MyDialog(Context context, String content) {
@@ -83,6 +85,11 @@ public class MyDialog extends Dialog {
 		this.setNegativeText(negativeText);
 		this.setOnPositiveListener(positiveListener);
 		this.setOnNegativeListener(nagtiveListener);
+	}
+
+	public void showTitle(){
+		LinearLayout ll =(LinearLayout) findViewById(R.id.d_ll_title);
+		ll.setVisibility(View.VISIBLE);
 	}
 
 }

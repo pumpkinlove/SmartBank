@@ -8,9 +8,8 @@
                 android:endColor="@color/blue_theme_normal"
                 android:useLevel="true"
                 android:angle="180"
-                android:type="linear">
+                android:type="linear"/>
 
-            </gradient>
         </shape>
     </item>
 </selector>

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
@@ -9,9 +10,22 @@
         android:id="@+id/head_title"
         layout="@layout/layout_title" />
 
-    <View style="@style/style_default_line" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="1.05"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.pump.smartbank.view.SlideShowView
+            android:id="@+id/slideshowView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+             />
+
+    </LinearLayout>
 
     <LinearLayout
+        android:background="@color/white"
+        android:layout_weight="0.86"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -27,53 +41,39 @@
                 android:layout_height="match_parent"
                 app:cardBackgroundColor="@color/blue_fun"
                 android:clickable="true"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="8dp">
-                <LinearLayout
-                    android:orientation="vertical"
+                android:layout_margin="5dp"
+                app:cardCornerRadius="9dp"
+                app:cardElevation="3dp"
+                >
+                <ImageButton
+                    android:id="@+id/fun_ciips"
+                    android:layout_weight="2"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <ImageButton
-                        android:id="@+id/fun_ciips"
-                        android:layout_weight="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="2dp"
-                        android:layout_marginRight="4dp"
-                        android:layout_marginLeft="4dp"
-                        android:background="@mipmap/fun_ciips" />
-                    <TextView
-                        android:layout_weight="5"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </LinearLayout>
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@mipmap/fun_ciips" />
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:cardBackgroundColor="@color/red_fun"
+                android:layout_margin="5dp"
                 android:clickable="true"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="8dp">
-                <LinearLayout
-                    android:orientation="vertical"
+                app:cardCornerRadius="9dp"
+                app:cardElevation="3dp"
+               >
+                <ImageButton
+                    android:id="@+id/fun_team"
+                    android:layout_weight="2"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <ImageButton
-                        android:id="@+id/fun_team"
-                        android:layout_weight="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="2dp"
-                        android:layout_marginRight="4dp"
-                        android:layout_marginLeft="4dp"
-                        android:background="@mipmap/fun_team" />
-                    <TextView
-                        android:layout_weight="5"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </LinearLayout>
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@mipmap/fun_team" />
             </android.support.v7.widget.CardView>
 
         </LinearLayout>
@@ -87,120 +87,100 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:cardBackgroundColor="@color/green_fun"
+                android:layout_margin="5dp"
                 android:clickable="true"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="8dp">
-                <LinearLayout
-                    android:orientation="vertical"
+                android:paddingBottom="5dp"
+                app:cardCornerRadius="9dp"
+                app:cardElevation="3dp"
+                >
+                <ImageButton
+                    android:id="@+id/fun_bankdoing"
+                    android:layout_weight="2"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <ImageButton
-                        android:id="@+id/fun_bankdoing"
-                        android:layout_weight="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="2dp"
-                        android:layout_marginRight="4dp"
-                        android:layout_marginLeft="4dp"
-                        android:background="@mipmap/fun_bankdoing" />
-                    <TextView
-                        android:layout_weight="5"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </LinearLayout>
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@mipmap/fun_bankdoing" />
             </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:cardBackgroundColor="@color/purple_fun"
-                android:clickable="true"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="8dp">
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <ImageButton
-                        android:id="@+id/fun_product"
-                        android:layout_weight="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="2dp"
-                        android:layout_marginRight="4dp"
-                        android:layout_marginLeft="4dp"
-                        android:background="@mipmap/fun_product" />
-                    <TextView
-                        android:layout_weight="5"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
             <android.support.v7.widget.CardView
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:cardBackgroundColor="@color/yellow_fun"
+                android:layout_margin="5dp"
                 android:clickable="true"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="8dp">
-                <LinearLayout
-                    android:orientation="vertical"
+                app:cardCornerRadius="9dp"
+                android:paddingBottom="5dp"
+                app:cardElevation="3dp"
+                >
+                <ImageButton
+                    android:layout_weight="2"
+                    android:id="@+id/fun_analyze"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <ImageButton
-                        android:layout_weight="2"
-                        android:id="@+id/fun_analyze"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="2dp"
-                        android:layout_marginRight="4dp"
-                        android:layout_marginLeft="4dp"
-                        android:background="@mipmap/fun_analyze" />
-                    <TextView
-                        android:layout_weight="5"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:cardBackgroundColor="@color/blue_fun_light"
-                android:clickable="true"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="8dp">
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <ImageButton
-                        android:layout_weight="2"
-                        android:id="@+id/fun_myhelp"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="2dp"
-                        android:layout_marginRight="4dp"
-                        android:layout_marginLeft="4dp"
-                        android:background="@mipmap/fun_myhelp" />
-                    <TextView
-                        android:layout_weight="5"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </LinearLayout>
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@mipmap/fun_analyze" />
             </android.support.v7.widget.CardView>
 
         </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:text="我的助手"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="0.9"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <LinearLayout
+            android:layout_weight="4"
             android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:textColor="@color/gray_blue"
+                android:clickable="true"
+                android:background="@drawable/calculator_selector"
+                android:text="理财计算器"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/cal_finance" />
+            <TextView
+                android:textColor="@color/gray_blue"
+                android:clickable="true"
+                android:background="@drawable/calculator_selector"
+                android:text="贷款计算器"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/cal_loan" />
+            <TextView
+                android:clickable="true"
+                android:background="@drawable/calculator_selector"
+                android:textColor="@color/gray_blue"
+                android:text="...."
+                android:gravity="center"
+                android:textSize="18sp"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -208,5 +188,4 @@
         </LinearLayout>
 
     </LinearLayout>
-
 </LinearLayout>
