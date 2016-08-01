@@ -3,11 +3,12 @@
     <string name="login_title">湖北邮政智慧银行</string>
     <string name="login_title_down">Hubei Post Smart Bank Hall Mananger Pad</string>
     <string name="about">
-        <i>公司: 浙江中正智能科技有限公司</i>	    \n
-	    \n
-		<i>联系：service@miaxis.com</i>	    \n
-	    \n
 		<b>湖北邮政智慧银行，大堂经理专用PAD</b>	    \n
 	    \n
-		<b>有任何建议或者反馈可以随时联系官方客服</b></string>
+		<b>有任何建议或者反馈可以随时联系官方客服</b>      \n
+		\n
+		<i>公司: 浙江中正智能科技有限公司</i>	    \n
+		\n
+		<i>联系：service@miaxis.com</i>	    \n
+	</string>
 </resources>

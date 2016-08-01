@@ -12,7 +12,7 @@ import com.pump.smartbank.activity.function.analyze.AnalyzeActivity;
 import com.pump.smartbank.activity.function.bankdoing.BankDoingActivity;
 import com.pump.smartbank.activity.function.ciips.CiipsActivity;
 import com.pump.smartbank.activity.function.myhelp.LoanCalculatorActivity;
-import com.pump.smartbank.activity.function.myhelp.MyHelpActivity;
+import com.pump.smartbank.activity.function.myhelp.FinanceCalculatorActivity;
 import com.pump.smartbank.activity.function.team.TeamManageActivity;
 
 import org.xutils.view.annotation.ContentView;
@@ -63,7 +63,7 @@ public class FunctionActivity extends BaseActivity {
                 startActivity(new Intent(FunctionActivity.this, AnalyzeActivity.class));
                 break;
             case R.id.cal_finance:
-                startActivity(new Intent(FunctionActivity.this, MyHelpActivity.class));
+                startActivity(new Intent(FunctionActivity.this, FinanceCalculatorActivity.class));
                 break;
             case R.id.cal_loan:
                 startActivity(new Intent(FunctionActivity.this, LoanCalculatorActivity.class));

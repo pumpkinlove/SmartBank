@@ -81,7 +81,7 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.function.myhelp.MyHelpActivity"
+            android:name=".activity.function.myhelp.FinanceCalculatorActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity

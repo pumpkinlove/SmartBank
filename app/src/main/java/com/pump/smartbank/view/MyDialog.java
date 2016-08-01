@@ -92,4 +92,9 @@ public class MyDialog extends Dialog {
 		ll.setVisibility(View.VISIBLE);
 	}
 
+	public void hideBottom(){
+		LinearLayout ll =(LinearLayout) findViewById(R.id.d_ll_bottom);
+		ll.setVisibility(View.GONE);
+	}
+
 }

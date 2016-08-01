@@ -1,6 +1,5 @@
 package com.pump.smartbank.activity.function.myhelp;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
@@ -18,8 +17,8 @@ import org.xutils.x;
 
 import java.text.DecimalFormat;
 
-@ContentView(R.layout.activity_my_help)
-public class MyHelpActivity extends BaseActivity {
+@ContentView(R.layout.activity_finance_calculator)
+public class FinanceCalculatorActivity extends BaseActivity {
 
     @ViewInject(R.id.tv_middleContent)
     private TextView tv_middleContent;

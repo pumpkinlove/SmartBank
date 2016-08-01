@@ -39,6 +39,7 @@ public class HomeActivity extends BaseActivity {
     protected void initData() {
         logutDialog = new MyDialog(this,"确定退出吗？");
         aboutDialog = new MyDialog(this,"关于",getResources().getString(R.string.about));
+        aboutDialog.hideBottom();
     }
 
     @Override

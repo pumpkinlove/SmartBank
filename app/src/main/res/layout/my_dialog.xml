@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="350dp"
+	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:background="@null"
@@ -20,7 +20,7 @@
 			<LinearLayout
 				android:id="@+id/d_ll_title"
 				android:visibility="gone"
-				android:orientation="horizontal"
+				android:orientation="vertical"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_margin="7dp">
@@ -35,8 +35,7 @@
 					android:gravity="center_vertical"
 					android:paddingLeft="10dp"
 					android:singleLine="true" />
-				<View
-					style="@style/style_default_line"/>
+				<View style="@style/style_default_line"/>
 			</LinearLayout>
 
 			<LinearLayout
@@ -61,6 +60,7 @@
 				android:layout_marginRight="8dp"
 				style="@style/style_default_line"/>
 			<LinearLayout
+				android:id="@+id/d_ll_bottom"
 				android:orientation="horizontal"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
@@ -75,7 +75,8 @@
 					android:gravity="center"
 					android:textSize="22sp"
 					android:textColor="@color/white"
-					android:id="@+id/d_positiveButton"/>
+					android:id="@+id/d_positiveButton" />
+
 				<Button
 					android:text="取 消"
 					android:layout_weight="1"
