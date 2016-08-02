@@ -9,6 +9,7 @@ import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ import com.pump.smartbank.adapter.WatchStatusAdapter;
 import com.pump.smartbank.domain.Customer;
 import com.pump.smartbank.domain.Notice;
 import com.pump.smartbank.domain.WatchStatus;
+import com.pump.smartbank.listener.MyItemListener;
 import com.pump.smartbank.util.DateUtil;
 import com.pump.smartbank.util.DbUtil;
 
@@ -57,7 +59,7 @@ public class IndexActivity extends AppCompatActivity {
     private Vibrator vibrator;
     private RecyclerView.Adapter noticeAdapter;
     private RecyclerView.Adapter watchStatusAdapter;
-    private RecyclerView.Adapter customerAdapter;
+    private CustomerAdapter customerAdapter;
 
     private InformReceiver informReceiver;
     private DbManager.DaoConfig dbConfig;
@@ -92,6 +94,14 @@ public class IndexActivity extends AppCompatActivity {
                 customerList = new ArrayList<Customer>();
             }
             customerAdapter = new CustomerAdapter(customerList, this);
+            customerAdapter.setOnItemClickListener(new MyItemListener() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    Intent intent = new Intent(IndexActivity.this, CustomerActivity.class);
+                    intent.putExtra("customer", customerList.get(position));
+                    startActivity(intent);
+                }
+            });
         } catch (DbException e) {
             e.printStackTrace();
         }

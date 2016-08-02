@@ -124,6 +124,7 @@
                     android:layout_marginRight="20dp" />
             </LinearLayout>
             <android.support.v7.widget.RecyclerView
+                android:clickable="true"
                 android:id="@+id/rv_customer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">

@@ -6,6 +6,8 @@ import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
@@ -14,16 +16,23 @@ import android.widget.TextView;
 
 import com.pump.smartbank.R;
 import com.pump.smartbank.activity.BaseActivity;
+import com.pump.smartbank.adapter.BankEventAdapter;
 import com.pump.smartbank.comm.BankDoingComm;
 import com.pump.smartbank.comm.BaseComm;
 import com.pump.smartbank.comm.GetTimeComm;
+import com.pump.smartbank.domain.BankEvent;
+import com.pump.smartbank.util.DbUtil;
 
+import org.xutils.DbManager;
+import org.xutils.ex.DbException;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 @ContentView(R.layout.activity_bank_doing)
 public class BankDoingActivity extends BaseActivity {
@@ -32,10 +41,15 @@ public class BankDoingActivity extends BaseActivity {
     private TextView tv_middleContent;
     @ViewInject(R.id.tv_leftContent)
     private TextView tv_leftContent;
-    @ViewInject(R.id.iv_photo)
-    private ImageView iv_photo;
+    @ViewInject(R.id.tv_rightContent)
+    private TextView tv_rightContent;
 
-    private Bitmap bitmap;
+    @ViewInject(R.id.rv_bank_event)
+    private RecyclerView rv_bank_event;
+
+    private BankEventAdapter bankEventAdapter;
+    private List<BankEvent> bankEventList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +63,17 @@ public class BankDoingActivity extends BaseActivity {
 
     @Override
     protected void initData(){
-
+        DbManager.DaoConfig daoConfig = DbUtil.getDaoConfig();
+        DbManager dbManager =  x.getDb(daoConfig);
+        try {
+            bankEventList = dbManager.findAll(BankEvent.class);
+            if(bankEventList == null){
+                bankEventList = new ArrayList<>();
+            }
+            bankEventAdapter = new BankEventAdapter(bankEventList, this);
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -57,52 +81,39 @@ public class BankDoingActivity extends BaseActivity {
         x.view().inject(this);
         tv_middleContent.setText("网点活动跟踪");
         tv_leftContent.setVisibility(View.VISIBLE);
+        tv_rightContent.setText("新建活动");
+        tv_rightContent.setVisibility(View.VISIBLE);
+
+        rv_bank_event.setHasFixedSize(true);
+        rv_bank_event.setLayoutManager(new LinearLayoutManager(this));
+        rv_bank_event.setAdapter(bankEventAdapter);
+
     }
 
     private void initCamera(){
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == 1){
-            if(resultCode == Activity.RESULT_OK){
-
-                bitmap = (Bitmap) data.getExtras().get("data");
-                iv_photo.setImageBitmap(bitmap);
-            }
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-
-    @Event(value={R.id.tv_leftContent,R.id.btn_take_photo,R.id.btn_upload_photo},type=View.OnClickListener.class)
+    @Event(value={R.id.tv_leftContent,R.id.tv_rightContent},type=View.OnClickListener.class)
     private void onClick(View view){
         switch (view.getId()){
             case R.id.tv_leftContent:
                 finish();
                 break;
-            case R.id.btn_take_photo:
-                startActivityForResult(new Intent(MediaStore.ACTION_IMAGE_CAPTURE), 1);
-                break;
-            case R.id.btn_upload_photo:
-                upLoadPhoto();
+            case R.id.tv_rightContent:
+                startActivityForResult(new Intent(this, NewBankEventActivity.class), 1);
                 break;
         }
     }
 
-    private void upLoadPhoto(){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Socket socket = BaseComm.connect("192.168.2.106", 7000, 10000, new StringBuilder());
-                BankDoingComm comm = new BankDoingComm(socket, bitmap);
-                int result = comm.executeComm();
-                if (result != 0) {
-                    System.out.print(comm.message);
-                    BaseComm.close(socket);
-                }
-                BaseComm.close(socket);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 1){
+            if(resultCode == Activity.RESULT_OK){
+                // TODO: 2016/8/2
             }
-        }).start();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
+
 }

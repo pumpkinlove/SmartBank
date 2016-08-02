@@ -46,7 +46,6 @@ public class Customer implements Serializable {
     @Column(name = "comeTime")
     private String comeTime;
 
-
     public Customer() {
     }
 

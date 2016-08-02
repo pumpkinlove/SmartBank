@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.pump.smartbank.R;
 import com.pump.smartbank.domain.Customer;
 import com.pump.smartbank.domain.WatchStatus;
+import com.pump.smartbank.listener.MyItemListener;
 
 import java.util.Collections;
 import java.util.List;
@@ -22,31 +23,47 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
 
     private List<Customer> customerList;
     private Context context;
+    private MyItemListener customerItemListener;
 
     public CustomerAdapter(List<Customer> customerList, Context context) {
         this.customerList = customerList;
         this.context=context;
     }
 
+    public void setOnItemClickListener(MyItemListener customerItemListener){
+        this.customerItemListener = customerItemListener;
+    }
 
     //自定义ViewHolder类
-    static class CustomerViewHolder extends RecyclerView.ViewHolder{
+    static class CustomerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView tv_customer_name;
         TextView tv_customer_come_time;
+        private MyItemListener customerItemListener;
 
-        public CustomerViewHolder(final View itemView) {
+
+
+        public CustomerViewHolder(final View itemView, MyItemListener customerItemListener ) {
             super(itemView);
             tv_customer_name = (TextView) itemView.findViewById(R.id.tv_customer_name);
             tv_customer_come_time = (TextView) itemView.findViewById(R.id.tv_customer_come_time);
+            this.customerItemListener = customerItemListener;
+            itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View view) {
+            if(customerItemListener != null){
+                customerItemListener.onItemClick(view,getPosition());
+            }
+        }
     }
     @Override
     public CustomerAdapter.CustomerViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v= LayoutInflater.from(context).inflate(R.layout.item_customer,viewGroup,false);
-        CustomerViewHolder nvh=new CustomerViewHolder(v);
-        return nvh;
+        CustomerViewHolder cvh = new CustomerViewHolder(v, customerItemListener);
+
+        return cvh;
     }
 
     @Override

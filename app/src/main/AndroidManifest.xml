@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.pump.smartbank" >
+    package="com.pump.smartbank">
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -41,11 +41,11 @@
         android:label="@string/app_name"
         android:launchMode="standard"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".activity.LoginActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden" >
+            android:windowSoftInputMode="adjustPan|stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -99,15 +99,16 @@
             android:enabled="true"
             android:exported="true" />
 
-        <receiver android:name=".receiver.BootBroadcastReceiver" >
+        <receiver android:name=".receiver.BootBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
         <activity android:name=".activity.function.ciips.CiipsActivity" />
-        <activity android:name=".activity.function.myhelp.LoanCalculatorActivity" >
-        </activity>
+        <activity android:name=".activity.function.myhelp.LoanCalculatorActivity" />
+        <activity android:name=".activity.index.CustomerActivity" />
+        <activity android:name=".activity.function.bankdoing.NewBankEventActivity" android:windowSoftInputMode="adjustPan|stateHidden"></activity>
     </application>
 
 </manifest>
