@@ -26,7 +26,6 @@
 				android:layout_margin="7dp">
 				<TextView
 					android:text="标题"
-					android:textStyle="bold"
 					android:id="@+id/dialog_title"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
@@ -36,6 +35,19 @@
 					android:paddingLeft="10dp"
 					android:singleLine="true" />
 				<View style="@style/style_default_line"/>
+				<FrameLayout
+					android:id="@+id/d_frame_layout"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent">
+					<fragment
+						android:id="@+id/d_fragment"
+						android:visibility="gone"
+						android:name="com.pump.smartbank.fragment.LoanResultFragment"
+						android:layout_width="match_parent"
+						android:layout_height="match_parent">
+
+					</fragment>
+				</FrameLayout>
 			</LinearLayout>
 
 			<LinearLayout

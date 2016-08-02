@@ -10,7 +10,7 @@
         android:id="@+id/head_title"
         layout="@layout/layout_title" />
     <LinearLayout
-        android:layout_weight="0.8"
+        android:layout_weight="0.77"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -59,8 +59,12 @@
                     android:textColor="@color/black"
                     android:paddingLeft="30dp"
                     android:paddingRight="30dp"/>
+                <View
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    style="@style/style_default_line"/>
                 <LinearLayout
-                    android:layout_weight="2"
+                    android:layout_weight="1.9"
                     android:lineSpacingExtra="5dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -69,7 +73,8 @@
                     <ImageView
                         android:id="@+id/iv_new_event_photo"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:layout_margin="6dp" />
 
                 </LinearLayout>
                 <View

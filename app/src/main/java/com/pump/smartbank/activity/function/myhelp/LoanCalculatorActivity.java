@@ -1,19 +1,22 @@
 package com.pump.smartbank.activity.function.myhelp;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.pump.smartbank.R;
 import com.pump.smartbank.activity.BaseActivity;
+import com.pump.smartbank.fragment.LoanResultFragment;
+import com.pump.smartbank.view.MyDialog;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
@@ -31,31 +34,29 @@ public class LoanCalculatorActivity extends BaseActivity {
     @ViewInject(R.id.tv_leftContent)
     private TextView tv_leftContent;
 
-    @ViewInject(R.id.et_finace_money)
-    private EditText et_finance_money;
+    @ViewInject(R.id.et_loan_money)
+    private EditText et_loan_money;
 
-    @ViewInject(R.id.et_finance_year)
-    private EditText et_finance_year;
+    @ViewInject(R.id.et_loan_month)
+    private EditText et_loan_month;
 
-    @ViewInject(R.id.et_finance_rate)
-    private EditText et_finance_rate;
+    @ViewInject(R.id.et_loan_rate)
+    private EditText et_loan_rate;
 
-    @ViewInject(R.id.tv_finance_result)
-    private TextView tv_finance_result;
-
-    private double f_money = 0.0;
-    private double f_year = 0.0;
-    private double f_rate = 0.0;
-    private double f_result_earn = 0.0;
-    private double f_result_total = 0.0;
-
+    private double loan_money = 0.0;
+    private double loan_month = 0.0;
+    private double loan_rate = 0.0;
     private int loanType;
+
+    private MyDialog resultDialog;
+    private FrameLayout dFrameLayout;
+    private LoanResultFragment loanResultFragment;
 
     @ViewInject(R.id.sp_loanType)
     private Spinner sp_type;
     private ArrayAdapter<String> spAdapter;
 
-    private static final String[] m={"等额本息还款","等额本金还款"};
+    private static final String[] loanTypes = {"等额本息还款","等额本金还款"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +70,15 @@ public class LoanCalculatorActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        spAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,m);
+        spAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, loanTypes);
         spAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        resultDialog = new MyDialog(this, "贷款计算结果", "");
+        resultDialog.hideContent();
+        resultDialog.showFrameLayout();
+        resultDialog.hideBottom();
+
     }
+
 
     @Override
     protected void initView() {
@@ -108,42 +115,26 @@ public class LoanCalculatorActivity extends BaseActivity {
     }
 
     private void calculateFinance(){
-        if(et_finance_money.length() < 1){
-            return;
-        }
-        if(et_finance_year.length() < 1){
-            return;
-        }
-        if(et_finance_rate.length() < 1){
-            return;
-        }
-        f_money = Double.valueOf(et_finance_money.getText().toString());
-        f_year = Double.valueOf(et_finance_year.getText().toString());
-        f_rate = Double.valueOf(et_finance_rate.getText().toString());
-        f_result_total = Math.pow(( 1 + f_rate/100), f_year) * f_money ;
-        DecimalFormat dcmFmt = new DecimalFormat("0.00");
-        f_result_earn = f_result_total - f_money;
-        String htmlStr =
-                "<html><body>" +
-                        "<p><font color=\"#aabb00\">" + f_year + "</p>" +
-                        " 年后，收益 "+
-                        "<p><font color=\"#00bbaa\">" + dcmFmt.format(f_result_earn) + "</p>" +
-                        " 元，合计 "+
-                        "<p><font color=\"#00bbaa\">" + dcmFmt.format(f_result_total) + "</p>" +
-                        " 元 " +
-                        "</body></html>";
-        tv_finance_result.setText(Html.fromHtml(htmlStr));
+//        if(et_loan_money.length() < 1){
+//            return;
+//        }
+//        if(et_loan_month.length() < 1){
+//            return;
+//        }
+//        if(et_loan_rate.length() < 1){
+//            return;
+//        }
+
+        resultDialog.show();
     }
 
     private void clearFinance(){
-        f_money = 0.0;
-        f_year = 0.0;
-        f_rate = 0.0;
-        f_result_earn = 0.0;
-        f_result_total = 0.0;
-        et_finance_money.setText("");
-        et_finance_year.setText("");
-        et_finance_rate.setText("");
-        tv_finance_result.setText("");
+        loan_money = 0.0;
+        loan_month = 0.0;
+        loan_rate = 0.0;
+        et_loan_money.setText("");
+        et_loan_month.setText("");
+        et_loan_rate.setText("");
     }
+
 }

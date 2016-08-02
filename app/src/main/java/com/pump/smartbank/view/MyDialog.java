@@ -1,27 +1,34 @@
 package com.pump.smartbank.view;
 
 import android.app.Dialog;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.pump.smartbank.R;
 
 public class MyDialog extends Dialog {
+	private Context context;
 	private TextView titleTxv;
 	private TextView msgTxv;
 	private TextView positiveTxv;
 	private TextView negativeTxv;
+	private FrameLayout dFrameLayout;
 
 	public MyDialog(Context context) {
 		super(context,R.style.my_dialog);
+		this.context = context;
 		setCustomView();
 	}
 
 	public MyDialog(Context context,String title, String content) {
 		super(context,R.style.my_dialog);
+		this.context = context;
 		setCustomView();
 		titleTxv.setText(title);
 		msgTxv.setText(content);
@@ -30,6 +37,7 @@ public class MyDialog extends Dialog {
 
 	public MyDialog(Context context, String content) {
 		super(context,R.style.my_dialog);
+		this.context = context;
 		setCustomView();
 		msgTxv.setText(content);
 	}
@@ -40,6 +48,7 @@ public class MyDialog extends Dialog {
 		msgTxv = (TextView) mView.findViewById(R.id.dialog_content);
 		positiveTxv = (TextView) mView.findViewById(R.id.d_positiveButton);
 		negativeTxv = (TextView) mView.findViewById(R.id.d_negativeButton);
+		dFrameLayout = (FrameLayout) mView.findViewById(R.id.d_frame_layout);
 		super.setContentView(mView);
 	}
 	
@@ -92,9 +101,17 @@ public class MyDialog extends Dialog {
 		ll.setVisibility(View.VISIBLE);
 	}
 
+	public void hideContent(){
+		msgTxv.setVisibility(View.GONE);
+	}
+
 	public void hideBottom(){
 		LinearLayout ll =(LinearLayout) findViewById(R.id.d_ll_bottom);
 		ll.setVisibility(View.GONE);
+	}
+
+	public void showFrameLayout(){
+		dFrameLayout.setVisibility(View.VISIBLE);
 	}
 
 }

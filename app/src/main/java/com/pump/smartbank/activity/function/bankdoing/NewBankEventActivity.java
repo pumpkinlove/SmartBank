@@ -1,6 +1,7 @@
 package com.pump.smartbank.activity.function.bankdoing;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -25,7 +26,9 @@ import org.xutils.x;
 
 import java.io.File;
 import java.net.Socket;
+import java.net.URI;
 import java.util.Date;
+import java.util.Random;
 
 @ContentView(R.layout.activity_new_bank_event)
 public class NewBankEventActivity extends BaseActivity {
@@ -38,6 +41,7 @@ public class NewBankEventActivity extends BaseActivity {
     private Bitmap bitmap;
     @ViewInject(R.id.iv_new_event_photo)
     private ImageView iv_photo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,12 +107,30 @@ public class NewBankEventActivity extends BaseActivity {
     }
 
     public void startCamera() {
+//        Intent i = new Intent(Intent.ACTION_CAMERA_BUTTON, null);
+//        this.sendBroadcast(i);
+        long dateTaken = System.currentTimeMillis();
+        String fileName = Environment.getExternalStorageDirectory().getPath()+"/"+ new Random().nextInt(100000)+".jpg";
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.Images.Media.TITLE, fileName);
+        values.put("data", fileName);
+        values.put(MediaStore.Images.Media.PICASA_ID, fileName);
+        values.put(MediaStore.Images.Media.DISPLAY_NAME, fileName);
+        values.put(MediaStore.Images.Media.DESCRIPTION, fileName);
+        values.put(MediaStore.Images.ImageColumns.BUCKET_DISPLAY_NAME, fileName);
+        Uri photoUri = getContentResolver().insert(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+
+        Intent inttPhoto = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        inttPhoto.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+        startActivityForResult(inttPhoto, 1);
         //调用系统的拍照功能
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra("autofocus", true);//进行自动对焦操作
-        intent.putExtra("fullScreen", false);//设置全屏
-        intent.putExtra("showActionIcons", false);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, "image/*");
-        startActivityForResult(intent, 1);
+//        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        intent.putExtra("autofocus", true);//进行自动对焦操作
+//        intent.putExtra("fullScreen", false);//设置全屏
+//        intent.putExtra("showActionIcons", false);
+//        File tempFile = new File(Environment.getExternalStorageDirectory().getPath()+"/"+new Date()+".jpg");
+//        intent.putExtra(MediaStore.EXTRA_OUTPUT, URI.);
+//        startActivityForResult(intent, 1);
     }
 }
