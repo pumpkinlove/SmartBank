@@ -243,13 +243,13 @@
             android:layout_marginRight="8dp"
             style="@style/style_default_line"/>
         <LinearLayout
-            android:layout_weight="0.96"
+            android:layout_weight="0.98"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="7dp">
             <Button
-                android:text="保存"
+                android:text="保 存"
                 android:layout_weight="1"
                 android:background="@drawable/blue_button_selector"
                 android:layout_width="match_parent"
@@ -260,7 +260,7 @@
                 android:layout_margin="4dp"
                 android:id="@+id/btn_config_confirm"/>
             <Button
-                android:text="取消"
+                android:text="取 消"
                 android:layout_weight="1"
                 android:background="@drawable/red_button_selector"
                 android:layout_width="match_parent"
