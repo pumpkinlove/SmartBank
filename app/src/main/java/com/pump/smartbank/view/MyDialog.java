@@ -18,7 +18,6 @@ public class MyDialog extends Dialog {
 	private TextView msgTxv;
 	private TextView positiveTxv;
 	private TextView negativeTxv;
-	private FrameLayout dFrameLayout;
 
 	public MyDialog(Context context) {
 		super(context,R.style.my_dialog);
@@ -48,7 +47,6 @@ public class MyDialog extends Dialog {
 		msgTxv = (TextView) mView.findViewById(R.id.dialog_content);
 		positiveTxv = (TextView) mView.findViewById(R.id.d_positiveButton);
 		negativeTxv = (TextView) mView.findViewById(R.id.d_negativeButton);
-		dFrameLayout = (FrameLayout) mView.findViewById(R.id.d_frame_layout);
 		super.setContentView(mView);
 	}
 	
@@ -86,16 +84,6 @@ public class MyDialog extends Dialog {
 		negativeTxv.setOnClickListener(listener);
 	}
 	
-	public void myInit(String title, String message, String positiveText, String negativeText, 
-			View.OnClickListener positiveListener, View.OnClickListener nagtiveListener){
-		this.setTitle(title);
-		this.setMessage(message);
-		this.setPositiveText(positiveText);
-		this.setNegativeText(negativeText);
-		this.setOnPositiveListener(positiveListener);
-		this.setOnNegativeListener(nagtiveListener);
-	}
-
 	public void showTitle(){
 		LinearLayout ll =(LinearLayout) findViewById(R.id.d_ll_title);
 		ll.setVisibility(View.VISIBLE);
@@ -108,10 +96,6 @@ public class MyDialog extends Dialog {
 	public void hideBottom(){
 		LinearLayout ll =(LinearLayout) findViewById(R.id.d_ll_bottom);
 		ll.setVisibility(View.GONE);
-	}
-
-	public void showFrameLayout(){
-		dFrameLayout.setVisibility(View.VISIBLE);
 	}
 
 }

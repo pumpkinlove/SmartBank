@@ -74,7 +74,6 @@ public class LoanCalculatorActivity extends BaseActivity {
         spAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         resultDialog = new MyDialog(this, "贷款计算结果", "");
         resultDialog.hideContent();
-        resultDialog.showFrameLayout();
         resultDialog.hideBottom();
 
     }

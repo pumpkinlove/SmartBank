@@ -9,9 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.pump.smartbank.R;
+import com.pump.smartbank.domain.LoanItem;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +28,9 @@ public class LoanResultFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public interface LoanResultListener{
+        void onGetLoanResult(int loanType, List<LoanItem> loanResultList);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
