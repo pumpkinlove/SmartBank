@@ -42,30 +42,8 @@ public class LoginActivity extends BaseActivity {
 
     @Event(value={R.id.btn_login},type=View.OnClickListener.class)
     private void onClick(final View view){
-//        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        startActivity(new Intent(LoginActivity.this, MainActivity.class));
 
-        RequestParams params = new RequestParams("http://192.168.5.215:8080/yygl/test/upload");
-        String fileName =  Environment.getExternalStorageDirectory().getPath()+"/86810.jpg";
-        params.addBodyParameter("upload", new File(fileName));
-        x.http().post(params, new Callback.CommonCallback<ResponseEntity>() {
 
-            @Override
-            public void onSuccess(ResponseEntity result) {
-                Snackbar.make(view, "上传成功", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-                Snackbar.make(view, "上传失败", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-            @Override
-            public void onCancelled(Callback.CancelledException cex) {
-            }
-            @Override
-            public void onFinished() {
-            }
-        });
     }
 }

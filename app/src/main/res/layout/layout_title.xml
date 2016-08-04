@@ -7,6 +7,7 @@
     android:background="@color/dark"
     >
     <TextView
+        android:visibility="invisible"
         android:layout_weight="6"
         android:id="@+id/tv_leftContent"
         android:drawableLeft="@mipmap/left_back_white"
@@ -29,6 +30,7 @@
         android:text="中间内容"
         android:maxEms="10" />
     <TextView
+        android:visibility="invisible"
         android:layout_weight="6"
         android:id="@+id/tv_rightContent"
         android:textSize="16sp"

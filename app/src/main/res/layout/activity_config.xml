@@ -43,7 +43,7 @@
                 android:inputType="numberDecimal"
                 android:digits="0123456789."
                 android:textSize="18sp"
-                android:hint="Socket Ip地址"
+                android:hint="Http通信 IP地址"
                 android:gravity="center_vertical"
                 android:singleLine="true" />
         </LinearLayout>
@@ -67,17 +67,35 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="12dp"
                 android:singleLine="true" />
-            <EditText
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_weight="2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/et_socket_port"
-                android:background="@null"
-                android:textSize="18sp"
-                android:hint="Socket通信 端口号"
-                android:inputType="number"
-                android:gravity="center_vertical"
-                android:singleLine="true" />
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:layout_weight="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/et_socket_port"
+                    android:background="@null"
+                    android:textSize="18sp"
+                    android:hint="Http通信 端口号"
+                    android:inputType="number"
+                    android:gravity="center_vertical"
+                    android:singleLine="true" />
+
+                <TextView
+                    android:clickable="true"
+                    android:id="@+id/tv_testHttp"
+                    android:text="Test"
+                    android:gravity="center"
+                    android:layout_weight="5"
+                    android:textSize="18sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
         </LinearLayout>
         <View
             android:layout_width="fill_parent"
@@ -109,7 +127,7 @@
                 android:id="@+id/et_emqtt_ip"
                 android:background="@null"
                 android:textSize="18sp"
-                android:hint="消息服务Ip地址"
+                android:hint="消息服务IP地址"
                 android:gravity="center_vertical"
                 android:singleLine="true" />
         </LinearLayout>
@@ -133,17 +151,35 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="12dp"
                 android:singleLine="true" />
-            <EditText
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_weight="2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="number"
-                android:id="@+id/et_emqtt_port"
-                android:background="@null"
-                android:textSize="18sp"
-                android:hint="消息服务端口号"
-                android:gravity="center_vertical"
-                android:singleLine="true" />
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:layout_weight="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:id="@+id/et_emqtt_port"
+                    android:background="@null"
+                    android:textSize="18sp"
+                    android:hint="消息服务端口号"
+                    android:gravity="center_vertical"
+                    android:singleLine="true" />
+                <TextView
+                    android:clickable="true"
+                    android:id="@+id/tv_testEmqtt"
+                    android:text="Test"
+                    android:gravity="center"
+                    android:layout_weight="5"
+                    android:textSize="18sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
         </LinearLayout>
         <View
             android:layout_marginLeft="8dp"

@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pump.smartbank.R;
 import com.pump.smartbank.adapter.CustomerAdapter;
@@ -169,6 +170,10 @@ public class IndexActivity extends AppCompatActivity {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    break;
+                case 4:
+                    String testReMessage = intent.getStringExtra("testReMessage");
+                    Toast.makeText(IndexActivity.this,testReMessage,Toast.LENGTH_SHORT).show();
                     break;
             }
         }

@@ -56,10 +56,10 @@ public class BankEventAdapter extends RecyclerView.Adapter<BankEventAdapter.Bank
 
     @Override
     public void onBindViewHolder(BankEventAdapter.BankEventViewHolder bankEventViewHolder, int i) {
-        bankEventViewHolder.tv_event_name.setText(bankEventList.get(i).getName());
+        bankEventViewHolder.tv_event_name.setText(bankEventList.get(i).getTitle());
         bankEventViewHolder.tv_event_content.setText(bankEventList.get(i).getContent());
         byte[] data = bankEventList.get(i).getPhoto();
-        bankEventViewHolder.iv_event_photo.setImageBitmap(BitmapFactory.decodeByteArray(data,0,data.length));
+//        bankEventViewHolder.iv_event_photo.setImageBitmap(BitmapFactory.decodeByteArray(data,0,data.length));
     }
 
     @Override

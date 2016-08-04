@@ -2,6 +2,7 @@ package com.pump.smartbank.activity.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -10,12 +11,15 @@ import android.widget.TextView;
 import com.pump.smartbank.R;
 import com.pump.smartbank.activity.BaseActivity;
 import com.pump.smartbank.domain.Config;
+import com.pump.smartbank.domain.ResponseEntity;
 import com.pump.smartbank.service.EmqttService;
 import com.pump.smartbank.util.DbUtil;
 import com.pump.smartbank.util.ServiceUtil;
 
 import org.xutils.DbManager;
+import org.xutils.common.Callback;
 import org.xutils.ex.DbException;
+import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
@@ -100,7 +104,7 @@ public class ConfigActivity extends BaseActivity {
         }
     }
 
-    @Event(value={R.id.tv_leftContent,R.id.btn_config_confirm,R.id.btn_config_cancel},type=View.OnClickListener.class)
+    @Event(value={R.id.tv_leftContent,R.id.btn_config_confirm,R.id.btn_config_cancel,R.id.tv_testHttp,R.id.tv_testEmqtt},type=View.OnClickListener.class)
     private void onClick(View view){
         switch (view.getId()){
             case R.id.tv_leftContent:
@@ -114,6 +118,12 @@ public class ConfigActivity extends BaseActivity {
                 break;
             case R.id.btn_config_cancel:
                 cancelConfig();
+                break;
+            case R.id.tv_testHttp:
+                test(view,"/CIIPS_A/test/testHttp.action");
+                break;
+            case R.id.tv_testEmqtt:
+                test(view, "/CIIPS_A/test/testEmqtt.action");
                 break;
         }
     }
@@ -168,4 +178,30 @@ public class ConfigActivity extends BaseActivity {
         Intent reStartServiceIntent = new Intent(this, EmqttService.class);
         startService(reStartServiceIntent);
     }
+
+    private void test(final View view,String url){
+
+        RequestParams params = new RequestParams("http://"+et_socket_ip.getText()+":"+et_socket_port.getText()+url);
+        x.http().post(params, new Callback.CommonCallback<ResponseEntity>() {
+
+            @Override
+            public void onSuccess(ResponseEntity response) {
+                Snackbar.make(view, "Http 通信成功" + response.getResult(), Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Snackbar.make(view, "Http 通信失败" + ex.getMessage(), Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+            @Override
+            public void onCancelled(Callback.CancelledException cex) {
+            }
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+
 }

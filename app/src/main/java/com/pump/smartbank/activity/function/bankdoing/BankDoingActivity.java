@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +15,10 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.pump.smartbank.R;
 import com.pump.smartbank.activity.BaseActivity;
 import com.pump.smartbank.adapter.BankEventAdapter;
@@ -21,10 +26,15 @@ import com.pump.smartbank.comm.BankDoingComm;
 import com.pump.smartbank.comm.BaseComm;
 import com.pump.smartbank.comm.GetTimeComm;
 import com.pump.smartbank.domain.BankEvent;
+import com.pump.smartbank.domain.Config;
+import com.pump.smartbank.domain.ResponseEntity;
 import com.pump.smartbank.util.DbUtil;
 
 import org.xutils.DbManager;
+import org.xutils.common.Callback;
+import org.xutils.config.DbConfigs;
 import org.xutils.ex.DbException;
+import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
@@ -32,6 +42,7 @@ import org.xutils.x;
 
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @ContentView(R.layout.activity_bank_doing)
@@ -69,6 +80,7 @@ public class BankDoingActivity extends BaseActivity {
             bankEventList = dbManager.findAll(BankEvent.class);
             if(bankEventList == null){
                 bankEventList = new ArrayList<>();
+                bankEventList.add(new BankEvent("sdsd",null,"fasf","dasd"));
             }
             bankEventAdapter = new BankEventAdapter(bankEventList, this);
         } catch (DbException e) {
@@ -101,7 +113,8 @@ public class BankDoingActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.tv_rightContent:
-                startActivityForResult(new Intent(this, NewBankEventActivity.class), 1);
+//                startActivityForResult(new Intent(this, NewBankEventActivity.class), 1);
+                downLoadBankEvents();
                 break;
         }
     }
@@ -114,6 +127,49 @@ public class BankDoingActivity extends BaseActivity {
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void downLoadBankEvents(){
+        DbManager.DaoConfig daoConfig = DbUtil.getDaoConfig();
+        DbManager dbManager = x.getDb(daoConfig);
+        try {
+            Config config = dbManager.findFirst(Config.class);
+
+            RequestParams params = new RequestParams("http://"+config.getSocketIp()+":"+config.getSocketPort() + "/CIIPS_A/bankdoing/findall.action");
+            x.http().post(params, new Callback.CommonCallback<ResponseEntity>() {
+
+                @Override
+                public void onSuccess(ResponseEntity response) {
+                    Gson g = new Gson();
+                    String reJson = response.getResult();
+                    JsonParser jsonParser = new JsonParser();
+                    JsonElement jsonElement = jsonParser.parse(reJson);
+                    JsonArray jsonArray = null;
+                    if(jsonElement.isJsonArray()){
+                        jsonArray = jsonElement.getAsJsonArray();
+                    }
+                    Iterator it = jsonArray.iterator();
+                    if(it.hasNext()){
+                        JsonElement e = (JsonElement) it.next();
+                        bankEventList.add(g.fromJson(e, BankEvent.class));
+                    }
+                    bankEventAdapter = new BankEventAdapter(bankEventList, BankDoingActivity.this);
+                    bankEventAdapter.notifyDataSetChanged();
+
+                }
+                @Override
+                public void onError(Throwable ex, boolean isOnCallback) {
+                }
+                @Override
+                public void onCancelled(Callback.CancelledException cex) {
+                }
+                @Override
+                public void onFinished() {
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -80,12 +80,16 @@ public class EmqttService extends Service {
                             intent.putExtra("customer", new Customer("李四", DateUtil.toHourMinString(new Date()), DateUtil.toMonthDay(new Date())));
                             intent.setAction("android.intent.action.test");//action与接收器相同
                             break;
+                        case 4:
+                            intent.putExtra("informType", 4);
+                            intent.putExtra("testReMessage", (String)msg.obj);
+                            intent.setAction("android.intent.action.test");
                     }
                     sendBroadcast(intent);
                 } else if(msg.what == 2) {
                     Toast.makeText(EmqttService.this, "连接成功", Toast.LENGTH_SHORT).show();
                     try {
-                        client.subscribe(myTopic, 1);
+                        client.subscribe(myTopic, 2);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
