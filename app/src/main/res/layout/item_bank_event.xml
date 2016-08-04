@@ -7,8 +7,9 @@
     android:layout_height="250dp">
 
     <android.support.v7.widget.CardView
-        app:cardElevation="6dp"
-        app:cardBackgroundColor="@color/dark"
+        app:cardElevation="10dp"
+        android:layout_margin="10dp"
+        app:cardBackgroundColor="@color/gray_light"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout

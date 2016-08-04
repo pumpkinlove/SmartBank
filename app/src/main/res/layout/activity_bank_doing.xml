@@ -8,12 +8,16 @@
         android:id="@+id/head_title"
         layout="@layout/layout_title" />
 
-    <android.support.v7.widget.RecyclerView
+    <com.yalantis.phoenix.PullToRefreshView
+        android:id="@+id/pull_bank_event"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/rv_bank_event">
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rv_bank_event">
 
 
-    </android.support.v7.widget.RecyclerView>
-
+        </android.support.v7.widget.RecyclerView>
+    </com.yalantis.phoenix.PullToRefreshView>
 </LinearLayout>

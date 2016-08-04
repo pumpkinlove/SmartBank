@@ -2,20 +2,12 @@ package com.pump.smartbank.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.view.WindowManager;
 import com.pump.smartbank.R;
-import com.pump.smartbank.domain.ResponseEntity;
-
-import org.xutils.common.Callback;
-import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.x;
-
-import java.io.File;
 
 @ContentView(R.layout.activity_login)
 public class LoginActivity extends BaseActivity {
@@ -43,7 +35,6 @@ public class LoginActivity extends BaseActivity {
     @Event(value={R.id.btn_login},type=View.OnClickListener.class)
     private void onClick(final View view){
         startActivity(new Intent(LoginActivity.this, MainActivity.class));
-
 
     }
 }

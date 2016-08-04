@@ -10,9 +10,12 @@ import android.widget.TextView;
 
 import com.pump.smartbank.R;
 import com.pump.smartbank.activity.BaseActivity;
+import com.pump.smartbank.domain.BankEvent;
 import com.pump.smartbank.domain.Config;
 import com.pump.smartbank.domain.ResponseEntity;
+import com.pump.smartbank.domain.response.BankEventResponse;
 import com.pump.smartbank.service.EmqttService;
+import com.pump.smartbank.service.TestService;
 import com.pump.smartbank.util.DbUtil;
 import com.pump.smartbank.util.ServiceUtil;
 
@@ -24,6 +27,11 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Retrofit;
 
 @ContentView(R.layout.activity_config)
 public class ConfigActivity extends BaseActivity {
@@ -124,6 +132,8 @@ public class ConfigActivity extends BaseActivity {
                 break;
             case R.id.tv_testEmqtt:
                 test(view, "/CIIPS_A/test/testEmqtt.action");
+
+//                retrifitTest(view);
                 break;
         }
     }
@@ -202,6 +212,17 @@ public class ConfigActivity extends BaseActivity {
             public void onFinished() {
             }
         });
+    }
+
+    private void retrifitTest(View view){
+//        Snackbar.make(view, "pppp", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show();
+//        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://192.168.2.108:8080/").build();
+//        TestService testService = retrofit.create(TestService.class);
+//        Call<List<BankEventResponse>> call = testService.testHttp();
+//        call.request();
+//        Snackbar.make(view, re.toString(), Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show();
     }
 
 }

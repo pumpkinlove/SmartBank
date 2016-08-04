@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -28,8 +29,13 @@ import com.pump.smartbank.comm.GetTimeComm;
 import com.pump.smartbank.domain.BankEvent;
 import com.pump.smartbank.domain.Config;
 import com.pump.smartbank.domain.ResponseEntity;
+import com.pump.smartbank.domain.event.LoadBankDoingEvent;
 import com.pump.smartbank.util.DbUtil;
+import com.yalantis.phoenix.PullToRefreshView;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.xutils.DbManager;
 import org.xutils.common.Callback;
 import org.xutils.config.DbConfigs;
@@ -54,9 +60,10 @@ public class BankDoingActivity extends BaseActivity {
     private TextView tv_leftContent;
     @ViewInject(R.id.tv_rightContent)
     private TextView tv_rightContent;
-
     @ViewInject(R.id.rv_bank_event)
     private RecyclerView rv_bank_event;
+    @ViewInject(R.id.pull_bank_event)
+    private PullToRefreshView pv_bank_event;
 
     private BankEventAdapter bankEventAdapter;
     private List<BankEvent> bankEventList;
@@ -69,23 +76,21 @@ public class BankDoingActivity extends BaseActivity {
 
         initData();
         initView();
-        initCamera();
+        downLoadBankEvents();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
     protected void initData(){
-        DbManager.DaoConfig daoConfig = DbUtil.getDaoConfig();
-        DbManager dbManager =  x.getDb(daoConfig);
-        try {
-            bankEventList = dbManager.findAll(BankEvent.class);
-            if(bankEventList == null){
-                bankEventList = new ArrayList<>();
-                bankEventList.add(new BankEvent("sdsd",null,"fasf","dasd"));
-            }
-            bankEventAdapter = new BankEventAdapter(bankEventList, this);
-        } catch (DbException e) {
-            e.printStackTrace();
-        }
+        EventBus.getDefault().register(this);
+        bankEventList = new ArrayList<>();
+        bankEventAdapter = new BankEventAdapter(bankEventList, this);
+
     }
 
     @Override
@@ -100,9 +105,18 @@ public class BankDoingActivity extends BaseActivity {
         rv_bank_event.setLayoutManager(new LinearLayoutManager(this));
         rv_bank_event.setAdapter(bankEventAdapter);
 
-    }
-
-    private void initCamera(){
+        pv_bank_event.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                pv_bank_event.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        downLoadBankEvents();
+                        pv_bank_event.setRefreshing(false);
+                    }
+                }, 800);
+            }
+        });
 
     }
 
@@ -113,17 +127,17 @@ public class BankDoingActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.tv_rightContent:
-//                startActivityForResult(new Intent(this, NewBankEventActivity.class), 1);
-                downLoadBankEvents();
+                startActivityForResult(new Intent(this, NewBankEventActivity.class), 1);
                 break;
         }
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == 1){
             if(resultCode == Activity.RESULT_OK){
-                // TODO: 2016/8/2
+                // TODO: 2016/8/4 0004
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -147,15 +161,13 @@ public class BankDoingActivity extends BaseActivity {
                     JsonArray jsonArray = null;
                     if(jsonElement.isJsonArray()){
                         jsonArray = jsonElement.getAsJsonArray();
+                        Iterator it = jsonArray.iterator();
+                        if(it.hasNext()){
+                            JsonElement e = (JsonElement) it.next();
+                            bankEventList.add(g.fromJson(e, BankEvent.class));
+                        }
+                        EventBus.getDefault().post(new LoadBankDoingEvent());
                     }
-                    Iterator it = jsonArray.iterator();
-                    if(it.hasNext()){
-                        JsonElement e = (JsonElement) it.next();
-                        bankEventList.add(g.fromJson(e, BankEvent.class));
-                    }
-                    bankEventAdapter = new BankEventAdapter(bankEventList, BankDoingActivity.this);
-                    bankEventAdapter.notifyDataSetChanged();
-
                 }
                 @Override
                 public void onError(Throwable ex, boolean isOnCallback) {
@@ -170,6 +182,11 @@ public class BankDoingActivity extends BaseActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMainEventBus(LoadBankDoingEvent loadBankDoingEvent){
+        bankEventAdapter.notifyDataSetChanged();
     }
 
 }

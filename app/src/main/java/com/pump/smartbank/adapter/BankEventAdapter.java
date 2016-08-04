@@ -30,7 +30,6 @@ public class BankEventAdapter extends RecyclerView.Adapter<BankEventAdapter.Bank
         this.context=context;
     }
 
-
     //自定义ViewHolder类
     static class BankEventViewHolder extends RecyclerView.ViewHolder{
 
@@ -44,7 +43,6 @@ public class BankEventAdapter extends RecyclerView.Adapter<BankEventAdapter.Bank
             tv_event_content = (TextView) itemView.findViewById(R.id.tv_event_content);
             iv_event_photo = (ImageView) itemView.findViewById(R.id.iv_event_photo);
         }
-
 
     }
     @Override
