@@ -2,20 +2,12 @@ package com.pump.smartbank.activity.function.bankdoing;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.provider.MediaStore;
-import android.support.design.widget.Snackbar;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -23,30 +15,24 @@ import com.google.gson.JsonParser;
 import com.pump.smartbank.R;
 import com.pump.smartbank.activity.BaseActivity;
 import com.pump.smartbank.adapter.BankEventAdapter;
-import com.pump.smartbank.comm.BankDoingComm;
-import com.pump.smartbank.comm.BaseComm;
-import com.pump.smartbank.comm.GetTimeComm;
 import com.pump.smartbank.domain.BankEvent;
 import com.pump.smartbank.domain.Config;
 import com.pump.smartbank.domain.ResponseEntity;
 import com.pump.smartbank.domain.event.LoadBankDoingEvent;
 import com.pump.smartbank.util.DbUtil;
 import com.yalantis.phoenix.PullToRefreshView;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.xutils.DbManager;
 import org.xutils.common.Callback;
-import org.xutils.config.DbConfigs;
-import org.xutils.ex.DbException;
 import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
-
-import java.net.Socket;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -68,7 +54,6 @@ public class BankDoingActivity extends BaseActivity {
     private BankEventAdapter bankEventAdapter;
     private List<BankEvent> bankEventList;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//去掉信息栏
@@ -88,7 +73,7 @@ public class BankDoingActivity extends BaseActivity {
     @Override
     protected void initData(){
         EventBus.getDefault().register(this);
-        bankEventList = new ArrayList<>();
+        bankEventList = new ArrayList<BankEvent>();
         bankEventAdapter = new BankEventAdapter(bankEventList, this);
 
     }
@@ -150,19 +135,25 @@ public class BankDoingActivity extends BaseActivity {
             Config config = dbManager.findFirst(Config.class);
 
             RequestParams params = new RequestParams("http://"+config.getSocketIp()+":"+config.getSocketPort() + "/CIIPS_A/bankdoing/findall.action");
+            params.setCharset("utf-8");
             x.http().post(params, new Callback.CommonCallback<ResponseEntity>() {
 
                 @Override
                 public void onSuccess(ResponseEntity response) {
                     Gson g = new Gson();
                     String reJson = response.getResult();
+                    try {
+                        reJson = URLDecoder.decode(reJson, "utf-8");
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
                     JsonParser jsonParser = new JsonParser();
                     JsonElement jsonElement = jsonParser.parse(reJson);
                     JsonArray jsonArray = null;
                     if(jsonElement.isJsonArray()){
                         jsonArray = jsonElement.getAsJsonArray();
                         Iterator it = jsonArray.iterator();
-                        if(it.hasNext()){
+                        while(it.hasNext()){
                             JsonElement e = (JsonElement) it.next();
                             bankEventList.add(g.fromJson(e, BankEvent.class));
                         }

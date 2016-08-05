@@ -18,19 +18,24 @@ import com.pump.smartbank.R;
 import com.pump.smartbank.adapter.CustomerAdapter;
 import com.pump.smartbank.adapter.NoticeAdapter;
 import com.pump.smartbank.adapter.WatchStatusAdapter;
+import com.pump.smartbank.domain.Config;
 import com.pump.smartbank.domain.Customer;
 import com.pump.smartbank.domain.Notice;
+import com.pump.smartbank.domain.ResponseEntity;
 import com.pump.smartbank.domain.WatchStatus;
 import com.pump.smartbank.listener.MyItemListener;
 import com.pump.smartbank.util.DateUtil;
 import com.pump.smartbank.util.DbUtil;
 
 import org.xutils.DbManager;
+import org.xutils.common.Callback;
 import org.xutils.config.DbConfigs;
 import org.xutils.db.Selector;
 import org.xutils.db.sqlite.WhereBuilder;
 import org.xutils.ex.DbException;
+import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
@@ -187,9 +192,8 @@ public class IndexActivity extends AppCompatActivity {
         vibrator.vibrate(pattern,-1);
 
         //
-
-
-
     }
+
+
 
 }

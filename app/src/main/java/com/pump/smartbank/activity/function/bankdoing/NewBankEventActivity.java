@@ -11,23 +11,45 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.pump.smartbank.R;
 import com.pump.smartbank.activity.BaseActivity;
 import com.pump.smartbank.comm.BankDoingComm;
 import com.pump.smartbank.comm.BaseComm;
+import com.pump.smartbank.domain.BankEvent;
+import com.pump.smartbank.domain.Config;
+import com.pump.smartbank.domain.ResponseEntity;
+import com.pump.smartbank.domain.event.LoadBankDoingEvent;
+import com.pump.smartbank.util.DbUtil;
+import com.pump.smartbank.util.PictureUtil;
 
+import org.greenrobot.eventbus.EventBus;
+import org.xutils.DbManager;
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
+import org.xutils.http.body.RequestBody;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.Socket;
 import java.net.URI;
+import java.net.URLDecoder;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Random;
 
 @ContentView(R.layout.activity_new_bank_event)
@@ -42,6 +64,13 @@ public class NewBankEventActivity extends BaseActivity {
     @ViewInject(R.id.iv_new_event_photo)
     private ImageView iv_photo;
 
+    @ViewInject(R.id.et_bank_event_title)
+    private EditText tv_title;
+    @ViewInject(R.id.et_bank_event_content)
+    private EditText tv_content;
+
+    private BankEvent bankEvent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +83,7 @@ public class NewBankEventActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-
+        bankEvent = new BankEvent();
     }
 
     @Override
@@ -85,25 +114,47 @@ public class NewBankEventActivity extends BaseActivity {
                 startCamera();
                 break;
             case R.id.btn_new_event_finish:
-
+                upLoadPhoto();
                 break;
         }
     }
 
     private void upLoadPhoto(){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Socket socket = BaseComm.connect("192.168.2.106", 7000, 10000, new StringBuilder());
-                BankDoingComm comm = new BankDoingComm(socket, bitmap);
-                int result = comm.executeComm();
-                if (result != 0) {
-                    System.out.print(comm.message);
-                    BaseComm.close(socket);
+        DbManager.DaoConfig daoConfig = DbUtil.getDaoConfig();
+        DbManager dbManager = x.getDb(daoConfig);
+        try {
+            Config config = dbManager.findFirst(Config.class);
+
+            RequestParams params = new RequestParams("http://"+config.getSocketIp()+":"+config.getSocketPort() + "/CIIPS_A/bankdoing/upload.action");
+            params.setCharset("utf-8");
+            bankEvent.setTitle(tv_title.getText().toString());
+            bankEvent.setContent(tv_content.getText().toString());
+            bankEvent.setBankName("测试");
+            iv_photo.setDrawingCacheEnabled(true);
+            bankEvent.setPhoto(PictureUtil.convertIconToString(iv_photo.getDrawingCache()));
+            Gson g = new Gson();
+            params.addParameter("bankEvent", g.toJson(bankEvent));
+            x.http().post(params, new Callback.CommonCallback<ResponseEntity>() {
+
+                @Override
+                public void onSuccess(ResponseEntity response) {
+                    finish();
                 }
-                BaseComm.close(socket);
-            }
-        }).start();
+                @Override
+                public void onError(Throwable ex, boolean isOnCallback) {
+                    System.out.println(ex.toString());
+                    Toast.makeText(x.app(),ex.getMessage(),Toast.LENGTH_SHORT).show();
+                }
+                @Override
+                public void onCancelled(Callback.CancelledException cex) {
+                }
+                @Override
+                public void onFinished() {
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void startCamera() {

@@ -18,6 +18,8 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
                 android:layout_weight="2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -27,17 +29,35 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <TextView
-                    android:paddingLeft="20dp"
-                    android:text="活动标题"
+                <LinearLayout
                     android:layout_weight="3"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/white"
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/tv_event_name" />
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:paddingLeft="20dp"
+                        android:text="活动标题"
+                        android:layout_weight="3"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/white"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/tv_event_name" />
+                    <TextView
+                        android:paddingLeft="20dp"
+                        android:text="某某测试网点"
+                        android:layout_weight="5"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/white"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/tv_event_bankname" />
+                </LinearLayout>
+
                 <TextView
                     android:paddingLeft="20dp"
                     android:text="活动内容"

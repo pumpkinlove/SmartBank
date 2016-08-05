@@ -36,12 +36,14 @@ public class BankEventAdapter extends RecyclerView.Adapter<BankEventAdapter.Bank
         TextView tv_event_name;
         TextView tv_event_content;
         ImageView iv_event_photo;
+        TextView tv_event_bankname;
 
         public BankEventViewHolder(final View itemView) {
             super(itemView);
             tv_event_name = (TextView) itemView.findViewById(R.id.tv_event_name);
             tv_event_content = (TextView) itemView.findViewById(R.id.tv_event_content);
             iv_event_photo = (ImageView) itemView.findViewById(R.id.iv_event_photo);
+            tv_event_bankname = (TextView) itemView.findViewById(R.id.tv_event_bankname);
         }
 
     }
@@ -57,7 +59,8 @@ public class BankEventAdapter extends RecyclerView.Adapter<BankEventAdapter.Bank
         bankEventViewHolder.tv_event_name.setText(bankEventList.get(i).getTitle());
         bankEventViewHolder.tv_event_content.setText(bankEventList.get(i).getContent());
         byte[] data = bankEventList.get(i).getPhoto();
-//        bankEventViewHolder.iv_event_photo.setImageBitmap(BitmapFactory.decodeByteArray(data,0,data.length));
+        bankEventViewHolder.iv_event_photo.setImageBitmap(BitmapFactory.decodeByteArray(data,0,data.length));
+        bankEventViewHolder.tv_event_bankname.setText(bankEventList.get(i).getBankName());
     }
 
     @Override

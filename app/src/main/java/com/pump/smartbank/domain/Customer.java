@@ -8,91 +8,56 @@ import java.io.Serializable;
 /**
  * Created by Administrator on 2016/7/31 0031.
  */
-@Table(name = "customer")
 public class Customer implements Serializable {
 
-    @Column(name = "id",isId = true,autoGen = true)
-    private int id;
-    @Column(name = "name")
-    private String name;
-    @Column(name = "nameSpell")
-    private String nameSpell;
-    @Column(name = "gender")
-    private String gender;
-    @Column(name = "birthday")
+    private String customname;
+    private String pingyin;
+    private String sex;
     private String birthday;
-    @Column(name = "certificateType")
-    private String certificateType;
-    @Column(name = "certificate")
-    private String certificate;
-    @Column(name = "udCardStart")
-    private String udCardStart;
-    @Column(name = "idCardExpire")
-    private String idCardExpire;
-    @Column(name = "idCardDept")
-    private String idCardDept;
-    @Column(name = "address")
+    private String cardid;
+    private String validate;
+    private String carddept;
     private String address;
-    @Column(name = "phoneNumber")
-    private String phoneNumber;
-    @Column(name = "eMail")
-    private String eMail;
-    @Column(name = "photo")
-    private String photo;
-    @Column(name = "age")
-    private String age;
-    @Column(name = "comeDate")
-    private String comeDate;
-    @Column(name = "comeTime")
+    private String telphone;
+    private String mail;
+    private String eveaddress;
+    private String mailcode;
+    private String opdate;
+    private String optime;
+    private String mz;
+    private String workaddr;
+    private String workcode;
+    private String tel;
+    private String worktel;
+    private String business;
+    private String idface;
+    private String idback;
+    private String cardpic;
+    private String netpic;
     private String comeTime;
 
-    public Customer() {
+    public String getCustomname() {
+        return customname;
     }
 
-    public Customer(String name, String comeTime, String comeDate) {
-        this.name = name;
-        this.comeTime = comeTime;
-        this.comeDate = comeDate;
+    public void setCustomname(String customname) {
+        this.customname = customname;
     }
 
-    public String getComeDate() {
-        return comeDate;
+    public String getPingyin() {
+        return pingyin;
     }
 
-    public void setComeDate(String comeDate) {
-        this.comeDate = comeDate;
+    public void setPingyin(String pingyin) {
+        this.pingyin = pingyin;
     }
 
-    public String getComeTime() {
-        return comeTime;
+    public String getSex() {
+        return sex;
     }
 
-    public void setComeTime(String comeTime) {
-        this.comeTime = comeTime;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getNameSpell() {
-        return nameSpell;
-    }
-
-    public void setNameSpell(String nameSpell) {
-        this.nameSpell = nameSpell;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public String getBirthday() {
@@ -103,44 +68,28 @@ public class Customer implements Serializable {
         this.birthday = birthday;
     }
 
-    public String getCertificateType() {
-        return certificateType;
+    public String getCardid() {
+        return cardid;
     }
 
-    public void setCertificateType(String certificateType) {
-        this.certificateType = certificateType;
+    public void setCardid(String cardid) {
+        this.cardid = cardid;
     }
 
-    public String getCertificate() {
-        return certificate;
+    public String getValidate() {
+        return validate;
     }
 
-    public void setCertificate(String certificate) {
-        this.certificate = certificate;
+    public void setValidate(String validate) {
+        this.validate = validate;
     }
 
-    public String getUdCardStart() {
-        return udCardStart;
+    public String getCarddept() {
+        return carddept;
     }
 
-    public void setUdCardStart(String udCardStart) {
-        this.udCardStart = udCardStart;
-    }
-
-    public String getIdCardExpire() {
-        return idCardExpire;
-    }
-
-    public void setIdCardExpire(String idCardExpire) {
-        this.idCardExpire = idCardExpire;
-    }
-
-    public String getIdCardDept() {
-        return idCardDept;
-    }
-
-    public void setIdCardDept(String idCardDept) {
-        this.idCardDept = idCardDept;
+    public void setCarddept(String carddept) {
+        this.carddept = carddept;
     }
 
     public String getAddress() {
@@ -151,35 +100,139 @@ public class Customer implements Serializable {
         this.address = address;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getTelphone() {
+        return telphone;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setTelphone(String telphone) {
+        this.telphone = telphone;
     }
 
-    public String geteMail() {
-        return eMail;
+    public String getMail() {
+        return mail;
     }
 
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
-    public String getPhoto() {
-        return photo;
+    public String getEveaddress() {
+        return eveaddress;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public void setEveaddress(String eveaddress) {
+        this.eveaddress = eveaddress;
     }
 
-    public String getAge() {
-        return age;
+    public String getMailcode() {
+        return mailcode;
     }
 
-    public void setAge(String age) {
-        this.age = age;
+    public void setMailcode(String mailcode) {
+        this.mailcode = mailcode;
+    }
+
+    public String getOpdate() {
+        return opdate;
+    }
+
+    public void setOpdate(String opdate) {
+        this.opdate = opdate;
+    }
+
+    public String getOptime() {
+        return optime;
+    }
+
+    public void setOptime(String optime) {
+        this.optime = optime;
+    }
+
+    public String getMz() {
+        return mz;
+    }
+
+    public void setMz(String mz) {
+        this.mz = mz;
+    }
+
+    public String getWorkaddr() {
+        return workaddr;
+    }
+
+    public void setWorkaddr(String workaddr) {
+        this.workaddr = workaddr;
+    }
+
+    public String getWorkcode() {
+        return workcode;
+    }
+
+    public void setWorkcode(String workcode) {
+        this.workcode = workcode;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public String getWorktel() {
+        return worktel;
+    }
+
+    public void setWorktel(String worktel) {
+        this.worktel = worktel;
+    }
+
+    public String getBusiness() {
+        return business;
+    }
+
+    public void setBusiness(String business) {
+        this.business = business;
+    }
+
+    public String getIdface() {
+        return idface;
+    }
+
+    public void setIdface(String idface) {
+        this.idface = idface;
+    }
+
+    public String getIdback() {
+        return idback;
+    }
+
+    public void setIdback(String idback) {
+        this.idback = idback;
+    }
+
+    public String getCardpic() {
+        return cardpic;
+    }
+
+    public void setCardpic(String cardpic) {
+        this.cardpic = cardpic;
+    }
+
+    public String getNetpic() {
+        return netpic;
+    }
+
+    public void setNetpic(String netpic) {
+        this.netpic = netpic;
+    }
+
+    public String getComeTime() {
+        return comeTime;
+    }
+
+    public void setComeTime(String comeTime) {
+        this.comeTime = comeTime;
     }
 }

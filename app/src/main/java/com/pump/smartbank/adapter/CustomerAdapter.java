@@ -69,7 +69,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
     @Override
     public void onBindViewHolder(CustomerAdapter.CustomerViewHolder personViewHolder, int i) {
         Collections.reverse(customerList);
-        personViewHolder.tv_customer_name.setText(customerList.get(i).getName());
+        personViewHolder.tv_customer_name.setText(customerList.get(i).getCustomname());
         personViewHolder.tv_customer_come_time.setText(customerList.get(i).getComeTime());
         Collections.reverse(customerList);
     }

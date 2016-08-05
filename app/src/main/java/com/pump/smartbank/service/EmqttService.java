@@ -5,11 +5,16 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.view.View;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.pump.smartbank.R;
 import com.pump.smartbank.domain.Config;
 import com.pump.smartbank.domain.Customer;
 import com.pump.smartbank.domain.Notice;
+import com.pump.smartbank.domain.ResponseEntity;
 import com.pump.smartbank.domain.WatchStatus;
 import com.pump.smartbank.util.DateUtil;
 import com.pump.smartbank.util.DbUtil;
@@ -21,7 +26,10 @@ import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import org.xutils.DbManager;
+import org.xutils.common.Callback;
 import org.xutils.ex.DbException;
+import org.xutils.http.RequestParams;
+import org.xutils.view.annotation.Event;
 import org.xutils.x;
 
 import java.util.Date;
@@ -69,23 +77,25 @@ public class EmqttService extends Service {
                             intent.putExtra("informType", 1);
                             intent.putExtra("notice", new Notice("差评",DateUtil.toMonthDay(new Date()) ,DateUtil.toHourMinString(new Date()),"窗口1", 1));
                             intent.setAction("android.intent.action.test");//action与接收器相同
+                            sendBroadcast(intent);
                             break;
                         case 2:
                             intent.putExtra("informType", 2);
                             intent.putExtra("watchStatus", new WatchStatus("1","张三", 11,2,1));
                             intent.setAction("android.intent.action.test");//action与接收器相同
+                            sendBroadcast(intent);
                             break;
                         case 3:
                             intent.putExtra("informType", 3);
-                            intent.putExtra("customer", new Customer("李四", DateUtil.toHourMinString(new Date()), DateUtil.toMonthDay(new Date())));
-                            intent.setAction("android.intent.action.test");//action与接收器相同
+                            downLoadCustomer(intent,(String)((String) msg.obj).split("3")[1]);
                             break;
                         case 4:
                             intent.putExtra("informType", 4);
                             intent.putExtra("testReMessage", (String)msg.obj);
                             intent.setAction("android.intent.action.test");
+                            sendBroadcast(intent);
+                            break;
                     }
-                    sendBroadcast(intent);
                 } else if(msg.what == 2) {
                     Toast.makeText(EmqttService.this, "连接成功", Toast.LENGTH_SHORT).show();
                     try {
@@ -221,4 +231,37 @@ public class EmqttService extends Service {
             }
         }).start();
     }
+
+    private void downLoadCustomer(final Intent intent, String customerName){
+        Toast.makeText(this,"faf",Toast.LENGTH_LONG).show();
+        try {
+            Config config = dbManager.findFirst(Config.class);
+
+            RequestParams params = new RequestParams("http://"+config.getSocketIp()+":"+config.getSocketPort() + "/CIIPS_A/customer/select.action");
+
+            params.addParameter("customname",customerName);
+
+            x.http().post(params, new Callback.CommonCallback<ResponseEntity>() {
+
+                @Override
+                public void onSuccess(ResponseEntity response) {
+                    String reJson = response.getResult();
+                    Gson g = new Gson();
+                    intent.putExtra("customer", g.fromJson(reJson,Customer.class));
+                }
+                @Override
+                public void onError(Throwable ex, boolean isOnCallback) {
+                }
+                @Override
+                public void onCancelled(Callback.CancelledException cex) {
+                }
+                @Override
+                public void onFinished() {
+                }
+            });
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
