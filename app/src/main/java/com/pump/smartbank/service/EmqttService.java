@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -32,6 +33,8 @@ import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.Event;
 import org.xutils.x;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Date;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -87,7 +90,15 @@ public class EmqttService extends Service {
                             break;
                         case 3:
                             intent.putExtra("informType", 3);
-                            downLoadCustomer(intent,(String)((String) msg.obj).split("3")[1]);
+                            try {
+                                String reJson = URLDecoder.decode((String) msg.obj, "utf-8");
+                                intent.putExtra("customer",reJson.split("3")[1]);
+                                intent.setAction("android.intent.action.test");//action与接收器相同
+                                sendBroadcast(intent);
+                            } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
+                            }
+
                             break;
                         case 4:
                             intent.putExtra("informType", 4);
@@ -118,6 +129,7 @@ public class EmqttService extends Service {
         dbManager = x.getDb(daoConfig);
         try {
             config = dbManager.findFirst(Config.class);
+            myTopic = config.getClientId();
             if(config != null){
                 if(client == null ){
                     initEmqtt();
@@ -230,38 +242,6 @@ public class EmqttService extends Service {
                 }
             }
         }).start();
-    }
-
-    private void downLoadCustomer(final Intent intent, String customerName){
-        Toast.makeText(this,"faf",Toast.LENGTH_LONG).show();
-        try {
-            Config config = dbManager.findFirst(Config.class);
-
-            RequestParams params = new RequestParams("http://"+config.getSocketIp()+":"+config.getSocketPort() + "/CIIPS_A/customer/select.action");
-
-            params.addParameter("customname",customerName);
-
-            x.http().post(params, new Callback.CommonCallback<ResponseEntity>() {
-
-                @Override
-                public void onSuccess(ResponseEntity response) {
-                    String reJson = response.getResult();
-                    Gson g = new Gson();
-                    intent.putExtra("customer", g.fromJson(reJson,Customer.class));
-                }
-                @Override
-                public void onError(Throwable ex, boolean isOnCallback) {
-                }
-                @Override
-                public void onCancelled(Callback.CancelledException cex) {
-                }
-                @Override
-                public void onFinished() {
-                }
-            });
-        } catch (DbException e) {
-            e.printStackTrace();
-        }
     }
 
 }

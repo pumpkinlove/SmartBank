@@ -8,8 +8,12 @@ import java.io.Serializable;
 /**
  * Created by Administrator on 2016/7/31 0031.
  */
+@Table(name="customer")
 public class Customer implements Serializable {
 
+    @Column(name = "id",isId = true, autoGen = true)
+    private int id;
+    @Column(name = "customname")
     private String customname;
     private String pingyin;
     private String sex;
@@ -34,7 +38,16 @@ public class Customer implements Serializable {
     private String idback;
     private String cardpic;
     private String netpic;
+    private String career;
+    private String nation;
+    @Column(name = "comeTime")
     private String comeTime;
+    @Column(name = "comeDate")
+    private String comeDate;
+
+
+    public Customer() {
+    }
 
     public String getCustomname() {
         return customname;
@@ -234,5 +247,29 @@ public class Customer implements Serializable {
 
     public void setComeTime(String comeTime) {
         this.comeTime = comeTime;
+    }
+
+    public String getCareer() {
+        return career;
+    }
+
+    public void setCareer(String career) {
+        this.career = career;
+    }
+
+    public String getNation() {
+        return nation;
+    }
+
+    public void setNation(String nation) {
+        this.nation = nation;
+    }
+
+    public String getComeDate() {
+        return comeDate;
+    }
+
+    public void setComeDate(String comeDate) {
+        this.comeDate = comeDate;
     }
 }

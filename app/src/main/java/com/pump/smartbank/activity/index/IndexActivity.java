@@ -9,11 +9,13 @@ import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.pump.smartbank.R;
 import com.pump.smartbank.adapter.CustomerAdapter;
 import com.pump.smartbank.adapter.NoticeAdapter;
@@ -39,6 +41,8 @@ import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -142,7 +146,6 @@ public class IndexActivity extends AppCompatActivity {
         rv_customer.setAdapter(customerAdapter);
     }
 
-
     public class InformReceiver extends BroadcastReceiver{
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -167,9 +170,13 @@ public class IndexActivity extends AppCompatActivity {
                     break;
                 case 3:
                     try {
-                        Customer customer = (Customer)intent.getSerializableExtra("customer");
-                        dbManager.save(customer);
+                        Customer customer = new Customer();
+                        String customname = intent.getStringExtra("customer");
+                        customer.setCustomname(customname);
+                        customer.setComeTime(DateUtil.toHourMinString(new Date()));
+                        customer.setComeDate(DateUtil.toMonthDay(new Date()));
                         customerList.add(customer);
+                        dbManager.save(customer);
                         customerAdapter.notifyDataSetChanged();
                         inform();
                     } catch (Exception e) {
@@ -193,7 +200,5 @@ public class IndexActivity extends AppCompatActivity {
 
         //
     }
-
-
 
 }

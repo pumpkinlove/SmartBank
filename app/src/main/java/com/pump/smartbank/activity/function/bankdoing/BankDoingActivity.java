@@ -1,6 +1,7 @@
 package com.pump.smartbank.activity.function.bankdoing;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -53,6 +56,7 @@ public class BankDoingActivity extends BaseActivity {
 
     private BankEventAdapter bankEventAdapter;
     private List<BankEvent> bankEventList;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +65,7 @@ public class BankDoingActivity extends BaseActivity {
 
         initData();
         initView();
+        progressDialog.show();
         downLoadBankEvents();
     }
 
@@ -73,14 +78,15 @@ public class BankDoingActivity extends BaseActivity {
     @Override
     protected void initData(){
         EventBus.getDefault().register(this);
+        progressDialog = new ProgressDialog(this);
         bankEventList = new ArrayList<BankEvent>();
         bankEventAdapter = new BankEventAdapter(bankEventList, this);
-
     }
 
     @Override
     protected void initView(){
         x.view().inject(this);
+        progressDialog.setMessage("正在刷新...");
         tv_middleContent.setText("网点活动跟踪");
         tv_leftContent.setVisibility(View.VISIBLE);
         tv_rightContent.setText("新建活动");
@@ -97,9 +103,8 @@ public class BankDoingActivity extends BaseActivity {
                     @Override
                     public void run() {
                         downLoadBankEvents();
-                        pv_bank_event.setRefreshing(false);
                     }
-                }, 800);
+                }, 1500);
             }
         });
 
@@ -116,7 +121,6 @@ public class BankDoingActivity extends BaseActivity {
                 break;
         }
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -153,21 +157,24 @@ public class BankDoingActivity extends BaseActivity {
                     if(jsonElement.isJsonArray()){
                         jsonArray = jsonElement.getAsJsonArray();
                         Iterator it = jsonArray.iterator();
+                        bankEventList.clear();
                         while(it.hasNext()){
                             JsonElement e = (JsonElement) it.next();
                             bankEventList.add(g.fromJson(e, BankEvent.class));
                         }
-                        EventBus.getDefault().post(new LoadBankDoingEvent());
                     }
                 }
                 @Override
                 public void onError(Throwable ex, boolean isOnCallback) {
+                    Toast.makeText(x.app(),"网络开小差啦，请稍后再试>_<",Toast.LENGTH_SHORT).show();
                 }
                 @Override
                 public void onCancelled(Callback.CancelledException cex) {
+                    EventBus.getDefault().post(new LoadBankDoingEvent());
                 }
                 @Override
                 public void onFinished() {
+                    EventBus.getDefault().post(new LoadBankDoingEvent());
                 }
             });
         } catch (Exception e) {
@@ -178,6 +185,8 @@ public class BankDoingActivity extends BaseActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMainEventBus(LoadBankDoingEvent loadBankDoingEvent){
         bankEventAdapter.notifyDataSetChanged();
+        progressDialog.dismiss();
+        pv_bank_event.setRefreshing(false);
     }
 
 }

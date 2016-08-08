@@ -1,6 +1,7 @@
 package com.pump.smartbank.activity.function.bankdoing;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -65,11 +66,13 @@ public class NewBankEventActivity extends BaseActivity {
     private ImageView iv_photo;
 
     @ViewInject(R.id.et_bank_event_title)
-    private EditText tv_title;
+    private EditText et_title;
     @ViewInject(R.id.et_bank_event_content)
-    private EditText tv_content;
+    private EditText et_content;
 
     private BankEvent bankEvent;
+
+    private ProgressDialog progressDialog;
 
 
     @Override
@@ -84,6 +87,7 @@ public class NewBankEventActivity extends BaseActivity {
     @Override
     protected void initData() {
         bankEvent = new BankEvent();
+        progressDialog = new ProgressDialog(this);
     }
 
     @Override
@@ -91,6 +95,7 @@ public class NewBankEventActivity extends BaseActivity {
         x.view().inject(this);
         tv_leftContent.setVisibility(View.VISIBLE);
         tv_middleContent.setText("新建活动");
+        progressDialog.setMessage("正在上传...");
     }
 
     @Override
@@ -120,15 +125,18 @@ public class NewBankEventActivity extends BaseActivity {
     }
 
     private void upLoadPhoto(){
+        if(et_title.length() < 1 || et_content.length() < 1){
+            return;
+        }
+        progressDialog.show();
         DbManager.DaoConfig daoConfig = DbUtil.getDaoConfig();
         DbManager dbManager = x.getDb(daoConfig);
         try {
             Config config = dbManager.findFirst(Config.class);
-
             RequestParams params = new RequestParams("http://"+config.getSocketIp()+":"+config.getSocketPort() + "/CIIPS_A/bankdoing/upload.action");
             params.setCharset("utf-8");
-            bankEvent.setTitle(tv_title.getText().toString());
-            bankEvent.setContent(tv_content.getText().toString());
+            bankEvent.setTitle(et_title.getText().toString());
+            bankEvent.setContent(et_content.getText().toString());
             bankEvent.setBankName("测试");
             iv_photo.setDrawingCacheEnabled(true);
             bankEvent.setPhoto(PictureUtil.convertIconToString(iv_photo.getDrawingCache()));
@@ -142,14 +150,15 @@ public class NewBankEventActivity extends BaseActivity {
                 }
                 @Override
                 public void onError(Throwable ex, boolean isOnCallback) {
-                    System.out.println(ex.toString());
                     Toast.makeText(x.app(),ex.getMessage(),Toast.LENGTH_SHORT).show();
                 }
                 @Override
                 public void onCancelled(Callback.CancelledException cex) {
+                    progressDialog.dismiss();
                 }
                 @Override
                 public void onFinished() {
+                    progressDialog.dismiss();
                 }
             });
         } catch (Exception e) {
@@ -161,7 +170,7 @@ public class NewBankEventActivity extends BaseActivity {
 //        Intent i = new Intent(Intent.ACTION_CAMERA_BUTTON, null);
 //        this.sendBroadcast(i);
         long dateTaken = System.currentTimeMillis();
-        String fileName = Environment.getExternalStorageDirectory().getPath()+"/"+ new Random().nextInt(100000)+".jpg";
+        String fileName = Environment.getExternalStorageDirectory().getPath()+"/"+ dateTaken+".jpg";
         ContentValues values = new ContentValues();
         values.put(MediaStore.Images.Media.TITLE, fileName);
         values.put("data", fileName);

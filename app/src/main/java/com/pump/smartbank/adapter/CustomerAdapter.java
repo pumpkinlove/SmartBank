@@ -41,8 +41,6 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
         TextView tv_customer_come_time;
         private MyItemListener customerItemListener;
 
-
-
         public CustomerViewHolder(final View itemView, MyItemListener customerItemListener ) {
             super(itemView);
             tv_customer_name = (TextView) itemView.findViewById(R.id.tv_customer_name);

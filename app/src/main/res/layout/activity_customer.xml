@@ -33,10 +33,11 @@
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="张三"
+                        android:text="客户姓名"
                         android:gravity="center"
                         android:textSize="30sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:id="@+id/tv_c_name" />
                     <LinearLayout
                         android:layout_weight="1"
                         android:orientation="horizontal"
@@ -46,14 +47,16 @@
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="男"
-                            android:gravity="center" />
+                            android:text="性别"
+                            android:gravity="center"
+                            android:id="@+id/tv_c_gender" />
                         <TextView
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="24岁" />
+                            android:text="年龄"
+                            android:id="@+id/tv_c_age" />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_weight="1"
@@ -71,7 +74,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="1992年5月26日" />
+                            android:text="生日"
+                            android:id="@+id/tv_c_birthday" />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_weight="1"
@@ -89,7 +93,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="320925199205260000" />
+                            android:text="身份证号码"
+                            android:id="@+id/tv_c_idcardno" />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_weight="1"
@@ -107,7 +112,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="临丁路699号" />
+                            android:text="地址"
+                            android:id="@+id/tv_c_address" />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_weight="1"
@@ -125,7 +131,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="程序员" />
+                            android:text="职业"
+                            android:id="@+id/tv_c_job" />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_weight="1"
@@ -136,14 +143,53 @@
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="工作单位"
+                            android:text="国籍"
                             android:gravity="center" />
                         <TextView
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="中正智能科技有限公司" />
+                            android:text="国籍"
+                            android:id="@+id/tv_c_nation" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="民族"
+                            android:gravity="center" />
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="民族"
+                            android:id="@+id/tv_c_race" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="联系方式"
+                            android:gravity="center" />
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="民族"
+                            android:id="@+id/tv_c_telphone" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -151,7 +197,12 @@
                     android:layout_weight="2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-
+                    <ImageView
+                        android:scaleType="fitCenter"
+                        android:adjustViewBounds="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/iv_c_photo" />
 
                 </LinearLayout>
 
@@ -169,7 +220,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <RelativeLayout
-        android:layout_weight="1"
+        android:layout_weight="1.2"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -191,7 +242,7 @@
         android:layout_height="wrap_content" />
 
     <RelativeLayout
-        android:layout_weight="1"
+        android:layout_weight="1.2"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
