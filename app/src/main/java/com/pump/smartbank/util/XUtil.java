@@ -71,7 +71,7 @@ public class XUtil {
         //设置断点续传
         params.setAutoResume(true);
         params.setSaveFilePath(filepath);
-        Callback.Cancelable cancelable = x.http().get(params, callback);
+        Callback.Cancelable cancelable = x.http().post(params, callback);
         return cancelable;
     }
 }

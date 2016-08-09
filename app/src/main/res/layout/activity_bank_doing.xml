@@ -7,6 +7,15 @@
     <include
         android:id="@+id/head_title"
         layout="@layout/layout_title" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/pb_bank_event"
+        android:progressDrawable="@drawable/progress_bar"
+        android:layout_gravity="center_horizontal"
+        android:indeterminate="false" />
     <com.yalantis.phoenix.PullToRefreshView
         android:id="@+id/pull_bank_event"
         android:layout_width="match_parent"

@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,7 +57,9 @@ public class BankDoingActivity extends BaseActivity {
 
     private BankEventAdapter bankEventAdapter;
     private List<BankEvent> bankEventList;
-    private ProgressDialog progressDialog;
+
+    @ViewInject(R.id.pb_bank_event)
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +68,6 @@ public class BankDoingActivity extends BaseActivity {
 
         initData();
         initView();
-        progressDialog.show();
         downLoadBankEvents();
     }
 
@@ -78,7 +80,6 @@ public class BankDoingActivity extends BaseActivity {
     @Override
     protected void initData(){
         EventBus.getDefault().register(this);
-        progressDialog = new ProgressDialog(this);
         bankEventList = new ArrayList<BankEvent>();
         bankEventAdapter = new BankEventAdapter(bankEventList, this);
     }
@@ -86,7 +87,6 @@ public class BankDoingActivity extends BaseActivity {
     @Override
     protected void initView(){
         x.view().inject(this);
-        progressDialog.setMessage("正在刷新...");
         tv_middleContent.setText("网点活动跟踪");
         tv_leftContent.setVisibility(View.VISIBLE);
         tv_rightContent.setText("新建活动");
@@ -185,8 +185,8 @@ public class BankDoingActivity extends BaseActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMainEventBus(LoadBankDoingEvent loadBankDoingEvent){
         bankEventAdapter.notifyDataSetChanged();
-        progressDialog.dismiss();
         pv_bank_event.setRefreshing(false);
+        progressBar.setVisibility(View.GONE);
     }
 
 }

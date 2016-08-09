@@ -15,15 +15,24 @@
             android:id="@+id/head_title"
             layout="@layout/layout_title" />
 
-        <View style="@style/style_default_line" />
-
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="10dp"
+            android:id="@+id/pb_download"
+            android:progressDrawable="@drawable/progress_bar"
+            android:layout_gravity="center_horizontal"
+            android:indeterminate="false" />
         <View
             android:layout_width="fill_parent"
             android:layout_height="10.0dip"
             android:background="@color/gray_bg"
             android:visibility="visible" />
 
+
         <RelativeLayout
+            android:elevation="5dp"
             android:layout_width="fill_parent"
             android:layout_height="130.0dip"
             android:background="@drawable/setting_selector"
@@ -218,4 +227,5 @@
             android:background="@drawable/logout_button"
             android:text="退出登录" />
     </LinearLayout>
+
 </ScrollView>

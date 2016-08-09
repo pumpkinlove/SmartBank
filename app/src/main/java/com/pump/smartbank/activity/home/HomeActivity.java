@@ -3,11 +3,14 @@ package com.pump.smartbank.activity.home;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
@@ -15,11 +18,10 @@ import com.google.gson.Gson;
 import com.pump.smartbank.R;
 import com.pump.smartbank.activity.BaseActivity;
 import com.pump.smartbank.domain.Config;
-import com.pump.smartbank.domain.Customer;
 import com.pump.smartbank.domain.ResponseEntity;
 import com.pump.smartbank.domain.Version;
 import com.pump.smartbank.util.DbUtil;
-import com.pump.smartbank.util.MyCallBack;
+import com.pump.smartbank.util.MyProgressCallBack;
 import com.pump.smartbank.util.XUtil;
 import com.pump.smartbank.view.MyDialog;
 
@@ -33,7 +35,6 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.io.File;
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
 @ContentView(R.layout.activity_home)
@@ -50,6 +51,8 @@ public class HomeActivity extends BaseActivity {
     private DbManager dbManager;
 
     private Config config;
+    @ViewInject(R.id.pb_download)
+    private ProgressBar progressBar;
 
 
 
@@ -81,6 +84,7 @@ public class HomeActivity extends BaseActivity {
     protected void initView(){
         x.view().inject(this);
         tv_middleContent.setText("我");
+
     }
 
 
@@ -114,7 +118,7 @@ public class HomeActivity extends BaseActivity {
                         String reJson = response.getResult();
                         reJson = URLDecoder.decode(reJson,"utf-8");
                         Gson g = new Gson();
-                        Version lastVersion = g.fromJson(reJson,Version.class);
+                        final Version lastVersion = g.fromJson(reJson,Version.class);
                         PackageManager manager = HomeActivity.this.getPackageManager();
                         PackageInfo info = manager.getPackageInfo(HomeActivity.this.getPackageName(), 0);
                         Version curVersion = new Version();
@@ -123,7 +127,23 @@ public class HomeActivity extends BaseActivity {
                         if(lastVersion.getVersionCode() <= curVersion.getVersionCode()){
                             Snackbar.make(view,"您已经更新到最新版本！",Snackbar.LENGTH_SHORT).show();
                         }else{
-                            downLoadNewVersion();
+                            updateDialog.setMessage("当前版本： "+curVersion.getVersionName()+"\n是否升级到新版本： "+lastVersion.getVersionName()+" ?");
+                            updateDialog.setPositiveText("更新");
+                            updateDialog.setNegativeText("取消");
+                            updateDialog.setOnNegativeListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    updateDialog.dismiss();
+                                }
+                            });
+                            updateDialog.setOnPositiveListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    updateDialog.dismiss();
+                                    downLoadNewVersion(lastVersion);
+                                }
+                            });
+                            updateDialog.show();
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -145,22 +165,63 @@ public class HomeActivity extends BaseActivity {
     }
 
 
-    private void downLoadNewVersion(){
-        String filepath = "";
+    private void downLoadNewVersion(Version lastVersion){
+        progressBar.setVisibility(View.VISIBLE);
+        final String filepath = Environment.getExternalStorageDirectory().getPath()+"/智慧银行_"+lastVersion.getVersionName()+".apk";
+        Log.e("--------------",filepath);
         String url = "http://" + config.getSocketIp() + ":" + config.getSocketPort() + "/CIIPS_A/version/downLoadLastVersion.action";
-        XUtil.DownLoadFile(url, filepath,new MyCallBack<File>(){
+        XUtil.DownLoadFile(url, filepath,new MyProgressCallBack<File>(){
             @Override
             public void onSuccess(File result) {
-                super.onSuccess(result);
-
+                progressBar.setVisibility(View.GONE);
+                Log.e("--------","onSuccess");
+                File file = new File(filepath);
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setDataAndType(Uri.fromFile(file),
+                        "application/vnd.android.package-archive");
+                startActivity(intent);
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-                super.onError(ex, isOnCallback);
+                Log.e("--------","onError");
+            }
 
+            @Override
+            public void onLoading(long total, long current, boolean isDownloading) {
+                Log.e("--------","onLoading");
+                if(isDownloading){
+                    Log.e("--------",current+"///"+total);
+                }
+                progressBar.setMax((int)total);
+                progressBar.setProgress((int)current);
+            }
+
+            @Override
+            public void onStarted() {
+                Log.e("--------","onStarted");
+                super.onStarted();
+            }
+
+            @Override
+            public void onWaiting() {
+                Log.e("--------","onWaiting");
+                super.onWaiting();
+            }
+
+            @Override
+            public void onFinished() {
+                Log.e("--------","onFinished");
+                super.onFinished();
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+                Log.e("--------","onCancelled");
+                super.onCancelled(cex);
             }
         });
     }
+
 
 }
