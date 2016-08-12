@@ -43,19 +43,19 @@ public class DateUtil {
         return age;
     }
 
-    private static int getYear(Date date){
+    public static int getYear(Date date){
         Calendar c = Calendar.getInstance();
         c.setTime(date);
         return c.get(Calendar.YEAR);
     }
 
-    private static int getMonth(Date date){
+    public static int getMonth(Date date){
         Calendar c = Calendar.getInstance();
         c.setTime(date);
         return c.get(Calendar.MONTH);
     }
 
-    private static int getDay(Date date){
+    public static int getDay(Date date){
         Calendar c = Calendar.getInstance();
         c.setTime(date);
         return c.get(Calendar.DAY_OF_MONTH);

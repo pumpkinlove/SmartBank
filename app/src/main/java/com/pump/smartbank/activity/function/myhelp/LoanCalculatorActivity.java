@@ -19,7 +19,10 @@ import com.pump.smartbank.activity.BaseActivity;
 import com.pump.smartbank.adapter.LoanItemAdapter;
 import com.pump.smartbank.domain.LoanItem;
 import com.pump.smartbank.fragment.LoanResultFragment;
+import com.pump.smartbank.util.MathUtil;
 import com.pump.smartbank.view.MyDialog;
+
+import org.w3c.dom.Text;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
@@ -65,6 +68,13 @@ public class LoanCalculatorActivity extends BaseActivity {
 
     @ViewInject(R.id.cv_cal_loan_result)
     private CardView cv_cal_loan_result;
+
+    @ViewInject(R.id.loan_total)
+    private TextView loan_total;
+    private double total_loan;
+    @ViewInject(R.id.loan_interest_total)
+    private TextView loan_interest_total;
+    private double total_interest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,14 +128,19 @@ public class LoanCalculatorActivity extends BaseActivity {
                 calculateFinance();
                 break;
             case R.id.btn_clear:
-                clearFinance();
+                clear();
                 break;
         }
     }
 
     private void calculateFinance(){
+        total_interest = 0;
+        total_loan = 0;
+        loan_total.setText("");
+        loan_interest_total.setText("");
         cv_cal_loan_result.setVisibility(View.VISIBLE);
-
+        loanItemList.clear();
+        loanItemAdapter.notifyDataSetChanged();
         if(et_loan_money.length() < 1){
             return;
         }
@@ -138,22 +153,47 @@ public class LoanCalculatorActivity extends BaseActivity {
 
         loan_money = Double.valueOf(et_loan_money.getText().toString());
         loan_month = Integer.valueOf(et_loan_month.getText().toString());
-        loan_rate = Double.valueOf(et_loan_rate.getText().toString());
+        loan_rate = Double.valueOf(et_loan_rate.getText().toString()) / 100;
+        if(loanType == 0){      //等额本息
+            double pb = loan_money;
+            for(int i=1;i<=loan_month;i++){
+                LoanItem item = new LoanItem();
+                item.setPeriod( i + "" );
+                double total = loan_money * ( loan_rate * Math.pow ( ( 1 + loan_rate ) , loan_month ) ) / ( Math.pow( ( 1 + loan_rate), loan_month ) - 1 );
+                item.setTotal(MathUtil.xround(total , 2) );
+                double interest = loan_money * loan_rate * Math.pow( 1+loan_rate, loan_month  ) / (Math.pow( 1+loan_rate, loan_month ) - 1) - loan_money * loan_rate * Math.pow(1+loan_rate, (i-1)) / (Math.pow( 1+loan_rate, loan_month ) - 1);
+                item.setInterest(MathUtil.xround(interest , 2));
+                double principal = total - interest;
+                item.setPrincipal(MathUtil.xround(principal , 2));
+                pb -= principal;
+                item.setPrincipalBalance(MathUtil.xround(pb, 2));
 
-
-
-        for(int i=1;i<=loan_month;i++){
-            LoanItem item = new LoanItem();
-            item.setPeriod( i + "" );
-
-            Log.e("-------------", item.getPeriod()+"----"+item.getTotal());
-            loanItemList.add(item);
+                Log.e("-------------", item.getPeriod()+"----"+item.getTotal());
+                loanItemList.add(item);
+                total_loan += item.getTotal();
+                total_interest += item.getInterest();
+            }
+        }else if(loanType == 1){    //等额本金
+            for(int i=1;i<=loan_month;i++){
+                LoanItem item = new LoanItem();
+                item.setPeriod( i + "" );
+                item.setTotal(MathUtil.xround(( loan_money/loan_month +  loan_rate * ( loan_money - loan_money/loan_month * (i-1) ) ), 2));
+                item.setPrincipal(MathUtil.xround( loan_money/loan_month ,2));
+                item.setInterest(MathUtil.xround( ( loan_rate * ( loan_money - loan_money/loan_month * (i-1) )) ,2));
+                item.setPrincipalBalance(MathUtil.xround((loan_money -  loan_money/loan_month * i), 2));
+                Log.e("-------------", item.getPeriod()+"----"+item.getTotal());
+                loanItemList.add(item);
+                total_loan += item.getTotal();
+                total_interest += item.getInterest();
+            }
         }
-        loanItemAdapter.notifyDataSetChanged();
 
+        loanItemAdapter.notifyDataSetChanged();
+        loan_total.setText(MathUtil.xround(total_loan, 2) +"");
+        loan_interest_total.setText(MathUtil.xround(total_interest, 2) +"");
     }
 
-    private void clearFinance(){
+    private void clear(){
         cv_cal_loan_result.setVisibility(View.INVISIBLE);
         loan_money = 0.0;
         loan_month = 0;
@@ -161,6 +201,8 @@ public class LoanCalculatorActivity extends BaseActivity {
         et_loan_money.setText("");
         et_loan_month.setText("");
         et_loan_rate.setText("");
+        loan_total.setText("");
+        loan_interest_total.setText("");
         loanItemList.clear();
     }
 
