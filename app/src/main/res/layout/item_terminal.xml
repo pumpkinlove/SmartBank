@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/white_bg_blue_ripple"
+    android:clickable="true"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/tv_terminal_id"
+        android:gravity="center"
+        android:text="终端编号"
+        android:layout_weight="5"
+        android:textSize="18sp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/tv_terminal_deptno"
+        android:text="机构编号"
+        android:gravity="center"
+        android:layout_weight="4"
+        android:textSize="18sp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
+
+    <Button
+        android:textColor="@color/white"
+        android:id="@+id/btn_subscribe"
+        android:layout_weight="4"
+        android:layout_margin="10dp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

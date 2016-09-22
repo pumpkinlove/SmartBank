@@ -61,4 +61,20 @@ public class DateUtil {
         return c.get(Calendar.DAY_OF_MONTH);
     }
 
+    /**
+     * 获取指定时间的前 N 天 的日期字符串yyyy-MM-dd
+     * @param date
+     * @return
+     */
+    public static String getSpecifiedDayBefore(Date date, int n) {
+        //SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        int day = c.get(Calendar.DATE);
+        c.set(Calendar.DATE,day - n);
+
+        String dayBefore = new SimpleDateFormat("yyyy-MM-dd").format(c.getTime());
+        return dayBefore;
+    }
+
 }

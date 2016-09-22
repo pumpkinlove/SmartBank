@@ -8,7 +8,7 @@
     <color name="blue_theme_dark">#0096ff</color>
     <color name="dark">#333333</color>
     <color name="gray_hint">#6effffff</color>
-    <color name="gray_light">#ababab</color>
+    <color name="gray_light">#eadddd</color>
     <color name="gray_deep">#7b7b7b</color>
     <color name="blue_light">#57cbe6</color>
     <color name="blue_very_light">#80daec</color>
@@ -28,4 +28,11 @@
     <color name="red_dark">#d40000</color>
     <color name="green_dark">#007d00</color>
     <color name="orange">#ff7d00</color>
+    <color name="tet">#d2ffd4</color>
+    <color name="blue_band_dark">#12283d</color>
+    <color name="blue_band_light">#86ecef</color>
+    <color name="blue_band_light2">#61b9bc</color>
+    <color name="blue_band_dark2">#4d5d6d</color>
+    <color name="blue_band_dark3">#9688939e</color>
+
 </resources>

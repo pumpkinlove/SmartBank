@@ -21,8 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="true"
-        app:cardCornerRadius="3dp"
-        app:cardElevation="5dp">
+        app:cardElevation="2dp">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -30,39 +29,38 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="35dp">
                 <TextView
                     android:id="@+id/tv_notice_position"
                     android:gravity="center"
-                    android:text="窗口号"
-                    android:textStyle="bold"
+                    android:text="来源"
                     android:textColor="@color/blue_theme_normal"
-                    android:layout_weight="4"
-                    android:textSize="18sp"
-                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent" />
                 <TextView
                     android:id="@+id/tv_notice_content"
-                    android:text="通知内容"
-                    android:textStyle="bold"
                     android:gravity="center"
                     android:textColor="@color/blue_theme_normal"
-                    android:layout_weight="2"
-                    android:textSize="18sp"
-                    android:layout_width="match_parent"
+                    android:layout_weight="3"
+                    android:textSize="16sp"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent" />
                 <TextView
                     android:id="@+id/tv_notice_time"
                     android:text="时间"
-                    android:textStyle="bold"
                     android:gravity="center"
                     android:textColor="@color/blue_theme_normal"
-                    android:layout_weight="4"
-                    android:textSize="18sp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="20dp" />
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
             </LinearLayout>
+            <View
+                android:background="@color/gray_light"
+                android:layout_width="match_parent"
+                android:layout_height="1px"/>
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_notice"
                 android:layout_width="match_parent"
@@ -82,47 +80,48 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="true"
-        app:cardCornerRadius="3dp"
-        app:cardElevation="5dp">
+        app:cardElevation="2dp">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="35dp">
                 <TextView
                     android:id="@+id/tv_customer_name"
                     android:gravity="center"
                     android:text="客户姓名"
-                    android:textStyle="bold"
                     android:textColor="@color/blue_theme_normal"
-                    android:layout_weight="4"
-                    android:textSize="18sp"
-                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent" />
                 <TextView
-                    android:textStyle="bold"
                     android:gravity="center"
                     android:textColor="@color/blue_theme_normal"
-                    android:layout_weight="2"
-                    android:textSize="18sp"
-                    android:layout_width="match_parent"
+                    android:layout_weight="3"
+                    android:textSize="16sp"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="20dp" />
                 <TextView
                     android:id="@+id/tv_customer_come_time"
                     android:text="时间"
-                    android:textStyle="bold"
                     android:gravity="center"
                     android:textColor="@color/blue_theme_normal"
-                    android:layout_weight="4"
-                    android:textSize="18sp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="20dp" />
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
             </LinearLayout>
+
+            <View
+                android:background="@color/gray_light"
+                android:layout_width="wrap_content"
+                android:layout_height="1px"/>
+
             <android.support.v7.widget.RecyclerView
                 android:clickable="true"
                 android:id="@+id/rv_customer"
@@ -144,8 +143,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="true"
-        app:cardCornerRadius="3dp"
-        app:cardElevation="5dp">
+        app:cardElevation="2dp">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -153,56 +151,67 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="35dp">
                 <TextView
                     android:id="@+id/tv_watch_position"
                     android:gravity="center"
                     android:text="窗口号"
-                    android:textStyle="bold"
                     android:textColor="@color/blue_theme_normal"
-                    android:layout_weight="4"
-                    android:textSize="18sp"
-                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent" />
+                <View
+                    android:background="@color/gray_light"
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"/>
                 <TextView
                     android:id="@+id/tv_watch_workername"
                     android:gravity="center"
                     android:text="营业员"
-                    android:textStyle="bold"
                     android:textColor="@color/blue_theme_normal"
-                    android:layout_weight="4"
-                    android:textSize="18sp"
-                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent" />
+                <View
+                    android:background="@color/gray_light"
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"/>
                 <TextView
                     android:id="@+id/tv_watch_good"
                     android:gravity="center"
                     android:text="好评"
-                    android:textStyle="bold"
                     android:textColor="@color/blue_theme_normal"
-                    android:layout_weight="4"
-                    android:textSize="18sp"
-                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent" />
+                <View
+                    android:background="@color/gray_light"
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"/>
                 <TextView
                     android:id="@+id/tv_watch_bad"
                     android:gravity="center"
                     android:text="差评"
-                    android:textStyle="bold"
                     android:textColor="@color/blue_theme_normal"
-                    android:layout_weight="4"
-                    android:textSize="18sp"
-                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent" />
+                <View
+                    android:background="@color/gray_light"
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"/>
                 <TextView
                     android:id="@+id/tv_watch_status"
                     android:gravity="center"
                     android:text="状态"
-                    android:textStyle="bold"
                     android:textColor="@color/blue_theme_normal"
-                    android:layout_weight="4"
-                    android:textSize="18sp"
-                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent" />
             </LinearLayout>
             <android.support.v7.widget.RecyclerView

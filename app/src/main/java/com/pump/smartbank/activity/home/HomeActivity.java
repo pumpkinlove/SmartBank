@@ -1,5 +1,6 @@
 package com.pump.smartbank.activity.home;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -20,6 +21,7 @@ import com.pump.smartbank.activity.BaseActivity;
 import com.pump.smartbank.domain.Config;
 import com.pump.smartbank.domain.ResponseEntity;
 import com.pump.smartbank.domain.Version;
+import com.pump.smartbank.util.CommonUtil;
 import com.pump.smartbank.util.DbUtil;
 import com.pump.smartbank.util.MyProgressCallBack;
 import com.pump.smartbank.util.XUtil;
@@ -47,14 +49,14 @@ public class HomeActivity extends BaseActivity {
     private MyDialog aboutDialog;
     private MyDialog updateDialog;
 
+    private ProgressDialog pd_check_version;
+
     private DbManager.DaoConfig daoConfig;
     private DbManager dbManager;
 
     private Config config;
     @ViewInject(R.id.pb_download)
     private ProgressBar progressBar;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,9 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        pd_check_version = new ProgressDialog(this);
+        pd_check_version.setMessage("正在检查版本...");
+        pd_check_version.setCanceledOnTouchOutside(false);
         logutDialog = new MyDialog(this,"确定退出吗？");
         aboutDialog = new MyDialog(this,"关于",getResources().getString(R.string.about));
         updateDialog = new MyDialog(this);
@@ -109,13 +114,13 @@ public class HomeActivity extends BaseActivity {
     private void checkUpdate(final View view){
         try {
 
-            RequestParams params = new RequestParams("http://"+config.getSocketIp()+":"+config.getSocketPort() + "/CIIPS_A/version/lastVersion.action");
-
-            x.http().post(params, new Callback.CommonCallback<ResponseEntity>() {
+            RequestParams params = new RequestParams("http://"+config.getHttpIp()+":"+config.getHttpPort() + "/CIIPS_A/version/lastVersion.action");
+            pd_check_version.show();
+            x.http().post(params, new Callback.CommonCallback<String>() {
                 @Override
-                public void onSuccess(ResponseEntity response) {
+                public void onSuccess(String response) {
                     try {
-                        String reJson = response.getResult();
+                        String reJson = response;
                         reJson = URLDecoder.decode(reJson,"utf-8");
                         Gson g = new Gson();
                         final Version lastVersion = g.fromJson(reJson,Version.class);
@@ -151,12 +156,14 @@ public class HomeActivity extends BaseActivity {
                 }
                 @Override
                 public void onError(Throwable ex, boolean isOnCallback) {
+                    CommonUtil.MyAlert(">_< 网络不给力啊~", getFragmentManager(), "check_version_error");
                 }
                 @Override
                 public void onCancelled(Callback.CancelledException cex) {
                 }
                 @Override
                 public void onFinished() {
+                    pd_check_version.dismiss();
                 }
             });
         } catch (Exception e) {
@@ -164,12 +171,11 @@ public class HomeActivity extends BaseActivity {
         }
     }
 
-
     private void downLoadNewVersion(Version lastVersion){
         progressBar.setVisibility(View.VISIBLE);
         final String filepath = Environment.getExternalStorageDirectory().getPath()+"/智慧银行_"+lastVersion.getVersionName()+".apk";
         Log.e("--------------",filepath);
-        String url = "http://" + config.getSocketIp() + ":" + config.getSocketPort() + "/CIIPS_A/version/downLoadLastVersion.action";
+        String url = "http://" + config.getHttpIp() + ":" + config.getHttpPort() + "/CIIPS_A/version/downLoadLastVersion.action";
         XUtil.DownLoadFile(url, filepath,new MyProgressCallBack<File>(){
             @Override
             public void onSuccess(File result) {

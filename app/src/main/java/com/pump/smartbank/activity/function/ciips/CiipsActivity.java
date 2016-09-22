@@ -55,7 +55,7 @@ public class CiipsActivity extends BaseActivity implements View.OnClickListener{
         tv_middleContent.setText("预填单系统");
         tv_leftContent.setVisibility(View.VISIBLE);
         //WebView加载web资源
-        wv_ciips.loadUrl("http://192.168.6.81:8080/CIIPS_C/app/mobile/category.jsp");
+        wv_ciips.loadUrl("http://www.zzjrfw.cn/CIIPS_C/app/mobile/category.jsp");
         //覆盖WebView默认使用第三方或系统默认浏览器打开网页的行为，使网页用WebView打开
         wv_ciips.setWebViewClient(new WebViewClient(){
             @Override

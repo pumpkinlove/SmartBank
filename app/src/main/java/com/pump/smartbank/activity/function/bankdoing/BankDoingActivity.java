@@ -126,6 +126,7 @@ public class BankDoingActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == 1){
             if(resultCode == Activity.RESULT_OK){
+                downLoadBankEvents();
                 // TODO: 2016/8/4 0004
             }
         }
@@ -138,14 +139,14 @@ public class BankDoingActivity extends BaseActivity {
         try {
             Config config = dbManager.findFirst(Config.class);
 
-            RequestParams params = new RequestParams("http://"+config.getSocketIp()+":"+config.getSocketPort() + "/CIIPS_A/bankdoing/findall.action");
+            RequestParams params = new RequestParams("http://"+config.getHttpIp()+":"+config.getHttpPort() + "/CIIPS_A/bankdoing/findall.action");
             params.setCharset("utf-8");
-            x.http().post(params, new Callback.CommonCallback<ResponseEntity>() {
+            x.http().post(params, new Callback.CommonCallback<String>() {
 
                 @Override
-                public void onSuccess(ResponseEntity response) {
+                public void onSuccess(String response) {
                     Gson g = new Gson();
-                    String reJson = response.getResult();
+                    String reJson = response;
                     try {
                         reJson = URLDecoder.decode(reJson, "utf-8");
                     } catch (UnsupportedEncodingException e) {
@@ -188,5 +189,6 @@ public class BankDoingActivity extends BaseActivity {
         pv_bank_event.setRefreshing(false);
         progressBar.setVisibility(View.GONE);
     }
+
 
 }

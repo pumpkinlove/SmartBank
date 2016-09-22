@@ -224,8 +224,9 @@
             android:layout_marginLeft="20.0dip"
             android:layout_marginRight="20.0dip"
             android:layout_marginTop="20.0dip"
+            android:textSize="20sp"
             android:background="@drawable/logout_button"
-            android:text="退出登录" />
+            android:text="退    出" />
     </LinearLayout>
 
 </ScrollView>

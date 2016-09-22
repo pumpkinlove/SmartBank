@@ -12,6 +12,9 @@ import com.pump.smartbank.domain.Customer;
 import com.pump.smartbank.domain.WatchStatus;
 import com.pump.smartbank.listener.MyItemListener;
 
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -37,14 +40,18 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
     //自定义ViewHolder类
     static class CustomerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
+        @ViewInject(R.id.tv_customer_name)
         TextView tv_customer_name;
+        @ViewInject(R.id.tv_customer_come_time)
         TextView tv_customer_come_time;
+        @ViewInject(R.id.tv_customer_business)
+        private TextView tv_customer_business;
+
         private MyItemListener customerItemListener;
 
         public CustomerViewHolder(final View itemView, MyItemListener customerItemListener ) {
             super(itemView);
-            tv_customer_name = (TextView) itemView.findViewById(R.id.tv_customer_name);
-            tv_customer_come_time = (TextView) itemView.findViewById(R.id.tv_customer_come_time);
+            x.view().inject(this, itemView);
             this.customerItemListener = customerItemListener;
             itemView.setOnClickListener(this);
         }
@@ -60,7 +67,6 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
     public CustomerAdapter.CustomerViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v= LayoutInflater.from(context).inflate(R.layout.item_customer,viewGroup,false);
         CustomerViewHolder cvh = new CustomerViewHolder(v, customerItemListener);
-
         return cvh;
     }
 
@@ -69,6 +75,12 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
         Collections.reverse(customerList);
         personViewHolder.tv_customer_name.setText(customerList.get(i).getCustomname());
         personViewHolder.tv_customer_come_time.setText(customerList.get(i).getComeTime());
+        personViewHolder.tv_customer_business.setText(customerList.get(i).getBusiness());
+        if('贵' == customerList.get(i).getBusiness().charAt(0)){
+            personViewHolder.tv_customer_business.setTextColor(context.getResources().getColor(R.color.orange));
+        }else{
+            personViewHolder.tv_customer_business.setTextColor(context.getResources().getColor(R.color.dark));
+        }
         Collections.reverse(customerList);
     }
 

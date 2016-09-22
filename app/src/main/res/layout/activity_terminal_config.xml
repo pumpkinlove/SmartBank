@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/head_title"
+        layout="@layout/layout_title" />
+
+    <View
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        style="@style/style_default_line"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:padding="5dp">
+
+        <TextView
+            android:gravity="center"
+            android:text="终端编号"
+            android:layout_weight="5"
+            android:textSize="18sp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:text="终端类型"
+            android:gravity="center"
+            android:layout_weight="4"
+            android:textSize="18sp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:text="订阅"
+            android:gravity="center"
+            android:layout_weight="4"
+            android:textSize="16sp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="20dp" />
+
+    </LinearLayout>
+    <View
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        style="@style/style_default_line"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_terminal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

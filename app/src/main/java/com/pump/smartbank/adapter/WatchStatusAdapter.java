@@ -63,16 +63,16 @@ public class WatchStatusAdapter extends RecyclerView.Adapter<WatchStatusAdapter.
         personViewHolder.tv_watch_bad.setText(watchStatusList.get(i).getBad()+"");
         int status = watchStatusList.get(i).getStatus();
         switch(status){
+//            case 1:
+//                personViewHolder.tv_watch_status.setText("业务办理中");
+//                personViewHolder.tv_watch_status.setTextColor(context.getResources().getColor(R.color.orange));
+//                break;
             case 1:
-                personViewHolder.tv_watch_status.setText("业务办理中");
-                personViewHolder.tv_watch_status.setTextColor(context.getResources().getColor(R.color.orange));
-                break;
-            case 2:
                 personViewHolder.tv_watch_status.setText("在岗");
                 personViewHolder.tv_watch_status.setTextColor(context.getResources().getColor(R.color.green_dark));
                 break;
-            case 3:
-                personViewHolder.tv_watch_status.setText("空闲");
+            case 2:
+                personViewHolder.tv_watch_status.setText("暂停");
                 personViewHolder.tv_watch_status.setTextColor(context.getResources().getColor(R.color.red));
                 break;
 

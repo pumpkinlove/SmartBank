@@ -109,16 +109,16 @@ public class CustomerActivity extends BaseActivity {
             dbManager = x.getDb(daoConfig);
             Config config = dbManager.findFirst(Config.class);
 
-            RequestParams params = new RequestParams("http://"+config.getSocketIp()+":"+config.getSocketPort() + "/CIIPS_A/customer/select.action");
+            RequestParams params = new RequestParams("http://"+config.getHttpIp()+":"+config.getHttpPort() + "/CIIPS_A/customer/select.action");
 
             params.setCharset("utf-8");
             params.addParameter("customname",customerName);
 
-            x.http().post(params, new Callback.CommonCallback<ResponseEntity>() {
+            x.http().post(params, new Callback.CommonCallback<String>() {
                 @Override
-                public void onSuccess(ResponseEntity response) {
+                public void onSuccess(String response) {
                     try {
-                        String reJson = response.getResult();
+                        String reJson = response;
                         reJson = URLDecoder.decode(reJson,"utf-8");
                         Gson g = new Gson();
                         customer =  g.fromJson(reJson,Customer.class);
@@ -151,7 +151,7 @@ public class CustomerActivity extends BaseActivity {
         tv_c_age.setText(DateUtil.getAge(customer.getBirthday())+" 周岁");
         tv_c_gender.setText(customer.getSex());
         tv_c_birthday.setText(customer.getBirthday());
-        tv_c_idcardno.setText(customer.getCardid());
+        tv_c_idcardno.setText(customer.getCardid().substring(0,14)+"****");
         tv_c_address.setText(customer.getAddress());
         tv_c_job.setText(customer.getCareer());
         tv_c_nation.setText(customer.getNation());

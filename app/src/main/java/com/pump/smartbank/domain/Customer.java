@@ -33,6 +33,7 @@ public class Customer implements Serializable {
     private String workcode;
     private String tel;
     private String worktel;
+    @Column(name = "business")
     private String business;
     private String idface;
     private String idback;

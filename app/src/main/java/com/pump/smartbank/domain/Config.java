@@ -17,10 +17,10 @@ public class Config implements Serializable {
     private String emqttIp;
     @Column(name = "emqttPort")
     private String emqttPort;
-    @Column(name = "socketIp")
-    private String socketIp;
-    @Column(name = "socketPort")
-    private String socketPort;
+    @Column(name = "httpIp")
+    private String httpIp;
+    @Column(name = "httpPort")
+    private String httpPort;
     @Column(name = "clientId")
     private String clientId;        //终端号   pad唯一标识符
     @Column(name = "emqttUsername")
@@ -31,12 +31,12 @@ public class Config implements Serializable {
     public Config() {
     }
 
-    public Config(int id, String emqttIp, String emqttPort, String socketIp, String socketPort, String clientId, String emqttUsername, String emqttPassword) {
+    public Config(int id, String emqttIp, String emqttPort, String httpIp, String httpPort, String clientId, String emqttUsername, String emqttPassword) {
         this.id = id;
         this.emqttIp = emqttIp;
         this.emqttPort = emqttPort;
-        this.socketIp = socketIp;
-        this.socketPort = socketPort;
+        this.httpIp = httpIp;
+        this.httpPort = httpPort;
         this.clientId = clientId;
         this.emqttUsername = emqttUsername;
         this.emqttPassword = emqttPassword;
@@ -56,22 +56,6 @@ public class Config implements Serializable {
 
     public void setEmqttPort(String emqttPort) {
         this.emqttPort = emqttPort;
-    }
-
-    public String getSocketIp() {
-        return socketIp;
-    }
-
-    public void setSocketIp(String socketIp) {
-        this.socketIp = socketIp;
-    }
-
-    public String getSocketPort() {
-        return socketPort;
-    }
-
-    public void setSocketPort(String socketPort) {
-        this.socketPort = socketPort;
     }
 
     public String getClientId() {
@@ -106,4 +90,33 @@ public class Config implements Serializable {
         this.emqttPassword = emqttPassword;
     }
 
+    public String getHttpIp() {
+        return httpIp;
+    }
+
+    public void setHttpIp(String httpIp) {
+        this.httpIp = httpIp;
+    }
+
+    public String getHttpPort() {
+        return httpPort;
+    }
+
+    public void setHttpPort(String httpPort) {
+        this.httpPort = httpPort;
+    }
+
+    @Override
+    public String toString() {
+        return "Config{" +
+                "id=" + id +
+                ", emqttIp='" + emqttIp + '\'' +
+                ", emqttPort='" + emqttPort + '\'' +
+                ", httpIp='" + httpIp + '\'' +
+                ", httpPort='" + httpPort + '\'' +
+                ", clientId='" + clientId + '\'' +
+                ", emqttUsername='" + emqttUsername + '\'' +
+                ", emqttPassword='" + emqttPassword + '\'' +
+                '}';
+    }
 }

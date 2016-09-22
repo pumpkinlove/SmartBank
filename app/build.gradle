@@ -39,4 +39,5 @@ dependencies {
     compile 'com.yalantis:phoenix:1.2.3'
     compile 'com.github.dmytrodanylyk.circular-progress-button:library:1.1.3'
     compile files('libs/sun.misc.BASE64Decoder.jar')
+    compile files('libs/pensoon_android_3.jar')
 }

@@ -43,7 +43,7 @@
                 android:clickable="true"
                 android:layout_margin="5dp"
                 app:cardCornerRadius="9dp"
-                app:cardElevation="3dp"
+                app:cardElevation="1dp"
                 >
                 <ImageButton
                     android:id="@+id/fun_ciips"
@@ -63,7 +63,7 @@
                 android:layout_margin="5dp"
                 android:clickable="true"
                 app:cardCornerRadius="9dp"
-                app:cardElevation="3dp"
+                app:cardElevation="1dp"
                >
                 <ImageButton
                     android:id="@+id/fun_team"
@@ -91,7 +91,7 @@
                 android:clickable="true"
                 android:paddingBottom="5dp"
                 app:cardCornerRadius="9dp"
-                app:cardElevation="3dp"
+                app:cardElevation="1dp"
                 >
                 <ImageButton
                     android:id="@+id/fun_bankdoing"
@@ -112,7 +112,7 @@
                 android:clickable="true"
                 app:cardCornerRadius="9dp"
                 android:paddingBottom="5dp"
-                app:cardElevation="3dp"
+                app:cardElevation="1dp"
                 >
                 <ImageButton
                     android:layout_weight="2"
@@ -168,17 +168,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/cal_loan" />
-            <TextView
-                android:clickable="true"
-                android:background="@drawable/calculator_selector"
-                android:textColor="@color/gray_blue"
-                android:text="...."
-                android:gravity="center"
-                android:textSize="18sp"
-                android:layout_weight="1"
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
         </LinearLayout>
         <LinearLayout
             android:layout_weight="1"

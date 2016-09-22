@@ -38,6 +38,11 @@
                         android:textSize="30sp"
                         android:textStyle="bold"
                         android:id="@+id/tv_c_name" />
+
+                    <View
+                        android:background="@color/gray_light"
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"/>
                     <LinearLayout
                         android:layout_weight="1"
                         android:orientation="horizontal"
@@ -49,15 +54,31 @@
                             android:layout_height="match_parent"
                             android:text="性别"
                             android:gravity="center"
-                            android:id="@+id/tv_c_gender" />
+                            android:id="@+id/tv_c_gender"
+                            android:background="@drawable/white_bg_blue_ripple"
+                            android:clickable="true" />
+
+                        <View
+                            android:background="@color/gray_light"
+                            android:layout_width="1px"
+                            android:layout_height="match_parent"/>
+
                         <TextView
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="年龄"
-                            android:id="@+id/tv_c_age" />
+                            android:id="@+id/tv_c_age"
+                            android:background="@drawable/white_bg_blue_ripple"
+                            android:clickable="true" />
                     </LinearLayout>
+
+                    <View
+                        android:background="@color/gray_light"
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"/>
+
                     <LinearLayout
                         android:layout_weight="1"
                         android:orientation="horizontal"
@@ -69,14 +90,26 @@
                             android:layout_height="match_parent"
                             android:text="出生日期"
                             android:gravity="center" />
+                        <View
+                            android:background="@color/gray_light"
+                            android:layout_width="1px"
+                            android:layout_height="match_parent"/>
                         <TextView
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="生日"
-                            android:id="@+id/tv_c_birthday" />
+                            android:id="@+id/tv_c_birthday"
+                            android:background="@drawable/white_bg_blue_ripple"
+                            android:clickable="true" />
                     </LinearLayout>
+
+                    <View
+                        android:background="@color/gray_light"
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"/>
+
                     <LinearLayout
                         android:layout_weight="1"
                         android:orientation="horizontal"
@@ -88,14 +121,26 @@
                             android:layout_height="match_parent"
                             android:text="身份证"
                             android:gravity="center" />
+                        <View
+                            android:background="@color/gray_light"
+                            android:layout_width="1px"
+                            android:layout_height="match_parent"/>
                         <TextView
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="身份证号码"
-                            android:id="@+id/tv_c_idcardno" />
+                            android:id="@+id/tv_c_idcardno"
+                            android:background="@drawable/white_bg_blue_ripple"
+                            android:clickable="true" />
                     </LinearLayout>
+
+                    <View
+                        android:background="@color/gray_light"
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"/>
+
                     <LinearLayout
                         android:layout_weight="1"
                         android:orientation="horizontal"
@@ -107,14 +152,26 @@
                             android:layout_height="match_parent"
                             android:text="地址"
                             android:gravity="center" />
+                        <View
+                            android:background="@color/gray_light"
+                            android:layout_width="1px"
+                            android:layout_height="match_parent"/>
                         <TextView
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="地址"
-                            android:id="@+id/tv_c_address" />
+                            android:id="@+id/tv_c_address"
+                            android:background="@drawable/white_bg_blue_ripple"
+                            android:clickable="true" />
                     </LinearLayout>
+
+                    <View
+                        android:background="@color/gray_light"
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"/>
+
                     <LinearLayout
                         android:layout_weight="1"
                         android:orientation="horizontal"
@@ -126,14 +183,26 @@
                             android:layout_height="match_parent"
                             android:text="职业"
                             android:gravity="center" />
+                        <View
+                            android:background="@color/gray_light"
+                            android:layout_width="1px"
+                            android:layout_height="match_parent"/>
                         <TextView
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="职业"
-                            android:id="@+id/tv_c_job" />
+                            android:id="@+id/tv_c_job"
+                            android:background="@drawable/white_bg_blue_ripple"
+                            android:clickable="true" />
                     </LinearLayout>
+
+                    <View
+                        android:background="@color/gray_light"
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"/>
+
                     <LinearLayout
                         android:layout_weight="1"
                         android:orientation="horizontal"
@@ -145,14 +214,26 @@
                             android:layout_height="match_parent"
                             android:text="国籍"
                             android:gravity="center" />
+                        <View
+                            android:background="@color/gray_light"
+                            android:layout_width="1px"
+                            android:layout_height="match_parent"/>
                         <TextView
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="国籍"
-                            android:id="@+id/tv_c_nation" />
+                            android:id="@+id/tv_c_nation"
+                            android:background="@drawable/white_bg_blue_ripple"
+                            android:clickable="true" />
                     </LinearLayout>
+
+                    <View
+                        android:background="@color/gray_light"
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"/>
+
                     <LinearLayout
                         android:layout_weight="1"
                         android:orientation="horizontal"
@@ -164,14 +245,26 @@
                             android:layout_height="match_parent"
                             android:text="民族"
                             android:gravity="center" />
+                        <View
+                            android:background="@color/gray_light"
+                            android:layout_width="1px"
+                            android:layout_height="match_parent"/>
                         <TextView
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="民族"
-                            android:id="@+id/tv_c_race" />
+                            android:id="@+id/tv_c_race"
+                            android:background="@drawable/white_bg_blue_ripple"
+                            android:clickable="true" />
                     </LinearLayout>
+
+                    <View
+                        android:background="@color/gray_light"
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"/>
+
                     <LinearLayout
                         android:layout_weight="1"
                         android:orientation="horizontal"
@@ -183,16 +276,28 @@
                             android:layout_height="match_parent"
                             android:text="联系方式"
                             android:gravity="center" />
+                        <View
+                            android:background="@color/gray_light"
+                            android:layout_width="1px"
+                            android:layout_height="match_parent"/>
                         <TextView
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="民族"
-                            android:id="@+id/tv_c_telphone" />
+                            android:text="联系方式"
+                            android:id="@+id/tv_c_telphone"
+                            android:background="@drawable/white_bg_blue_ripple"
+                            android:clickable="true" />
                     </LinearLayout>
 
                 </LinearLayout>
+
+                <View
+                    android:background="@color/gray_light"
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"/>
+
                 <LinearLayout
                     android:layout_weight="2"
                     android:layout_width="match_parent"
@@ -228,6 +333,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <TextView
+                android:textSize="18sp"
+                android:gravity="center"
+                android:text="②③⑥⑦⑧"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
 
 
 
@@ -250,7 +362,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
+            <TextView
+                android:textSize="18sp"
+                android:gravity="center"
+                android:text="①④⑤⑨⑩"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
 
         </android.support.v7.widget.CardView>

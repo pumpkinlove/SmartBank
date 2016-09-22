@@ -36,12 +36,12 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
     <application
+        android:name=".application.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:launchMode="standard"
         android:supportsRtl="true"
-        android:name=".application.MyApplication"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".activity.LoginActivity"
@@ -109,7 +109,12 @@
         <activity android:name=".activity.function.ciips.CiipsActivity" />
         <activity android:name=".activity.function.myhelp.LoanCalculatorActivity" />
         <activity android:name=".activity.index.CustomerActivity" />
-        <activity android:name=".activity.function.bankdoing.NewBankEventActivity" android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+        <activity
+            android:name=".activity.function.bankdoing.NewBankEventActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity android:name=".activity.home.HttpConfigActivity" />
+        <activity android:name=".activity.home.EmqttdConfigActivity" />
+        <activity android:name=".activity.home.TerminalConfigActivity"></activity>
     </application>
 
 </manifest>

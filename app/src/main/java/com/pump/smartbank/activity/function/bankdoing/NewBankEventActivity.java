@@ -74,7 +74,6 @@ public class NewBankEventActivity extends BaseActivity {
 
     private ProgressDialog progressDialog;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//去掉信息栏
@@ -133,7 +132,7 @@ public class NewBankEventActivity extends BaseActivity {
         DbManager dbManager = x.getDb(daoConfig);
         try {
             Config config = dbManager.findFirst(Config.class);
-            RequestParams params = new RequestParams("http://"+config.getSocketIp()+":"+config.getSocketPort() + "/CIIPS_A/bankdoing/upload.action");
+            RequestParams params = new RequestParams("http://"+config.getHttpIp()+":"+config.getHttpPort() + "/CIIPS_A/bankdoing/upload.action");
             params.setCharset("utf-8");
             bankEvent.setTitle(et_title.getText().toString());
             bankEvent.setContent(et_content.getText().toString());
@@ -142,10 +141,12 @@ public class NewBankEventActivity extends BaseActivity {
             bankEvent.setPhoto(PictureUtil.convertIconToString(iv_photo.getDrawingCache()));
             Gson g = new Gson();
             params.addParameter("bankEvent", g.toJson(bankEvent));
-            x.http().post(params, new Callback.CommonCallback<ResponseEntity>() {
+            x.http().post(params, new Callback.CommonCallback<String>() {
 
                 @Override
-                public void onSuccess(ResponseEntity response) {
+                public void onSuccess(String response) {
+                    Toast.makeText(x.app(),"上传成功",Toast.LENGTH_SHORT).show();
+                    setResult(Activity.RESULT_OK);
                     finish();
                 }
                 @Override

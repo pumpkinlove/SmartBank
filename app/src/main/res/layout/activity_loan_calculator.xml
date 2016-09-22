@@ -123,7 +123,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="7dp">
                     <TextView
-                        android:text="贷款年利率"
+                        android:text="贷款月利率"
                         android:layout_weight="3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

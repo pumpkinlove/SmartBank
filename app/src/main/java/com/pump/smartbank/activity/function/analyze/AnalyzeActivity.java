@@ -1,20 +1,33 @@
 package com.pump.smartbank.activity.function.analyze;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pump.smartbank.R;
 import com.pump.smartbank.activity.BaseActivity;
+import com.pump.smartbank.domain.Config;
+import com.pump.smartbank.util.DateUtil;
+import com.pump.smartbank.util.DbUtil;
+import com.pump.smartbank.util.XUtil;
 
+import org.xutils.DbManager;
+import org.xutils.common.Callback;
+import org.xutils.config.DbConfigs;
+import org.xutils.ex.DbException;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import lecho.lib.hellocharts.gesture.ZoomType;
 import lecho.lib.hellocharts.listener.ViewportChangeListener;
@@ -140,4 +153,42 @@ public class AnalyzeActivity extends BaseActivity {
         }
         previewChart.setZoomType(ZoomType.HORIZONTAL);
     }
+
+//    @Event(value = R.id.btn_analyze ,type=View.OnClickListener.class)
+//    private void analyze(View view){
+//        try {
+//            DbManager.DaoConfig daoConfig = DbUtil.getDaoConfig();
+//            DbManager manager = x.getDb(daoConfig);
+//            Config config = manager.findFirst(Config.class);
+//            String url = "http://"+config.getHttpIp()+":"+config.getHttpPort()+"/CIIPS_A/analyze/countAll.action";
+//            Map<String, Object> params = new HashMap<>();
+//            params.put("opdateTo", DateUtil.toMonthDay(new Date()));
+//            params.put("opdateFrom", DateUtil.getSpecifiedDayBefore(new Date(), 30));
+//            params.put("business","个人账户申请书");
+//            XUtil.Post(url, params, new Callback.CommonCallback<String>() {
+//                @Override
+//                public void onSuccess(String result) {
+//                    Log.e("-=======sssss=======",result);
+//                }
+//
+//                @Override
+//                public void onError(Throwable ex, boolean isOnCallback) {
+//                    Toast.makeText(x.app(),"网络开小差啦，请稍后再试>_<",Toast.LENGTH_SHORT).show();
+//                }
+//
+//                @Override
+//                public void onCancelled(CancelledException cex) {
+//
+//                }
+//
+//                @Override
+//                public void onFinished() {
+//
+//                }
+//            });
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
 }
